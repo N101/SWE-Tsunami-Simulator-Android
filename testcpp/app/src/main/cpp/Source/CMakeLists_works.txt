@@ -1,0 +1,35 @@
+#add_executable(${META_PROJECT_NAME}-TEST-Runner Runners/TestRunner.cpp)
+
+
+add_library(${META_PROJECT_NAME} OBJECT)
+
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "*")
+list(FILTER SOURCES EXCLUDE REGEX ".*Runner\\.cpp$")
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCES})
+target_sources(${META_PROJECT_NAME} PRIVATE ${SOURCES})
+target_include_directories(${META_PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+#find_package(SWE-Solvers REQUIRED)
+#target_link_libraries(${META_PROJECT_NAME}
+#        PUBLIC
+#        project_options
+#        project_warnings
+#        SWE-Solvers
+#        )
+
+set(WITH_SOLVER "FWave" CACHE STRING "Choose which Riemann solver to use (Default=FWave, AugRie, HLLE, Rusanov)")
+set(WITH_SOLVER_OPTIONS FWave HLLE AugRie Rusanov)
+set_property(CACHE WITH_SOLVER PROPERTY STRINGS ${WITH_SOLVER_OPTIONS})
+
+#if(WITH_SOLVER STREQUAL "FWave")
+#    target_compile_definitions(${META_PROJECT_NAME} PUBLIC WITH_SOLVER_FWAVE)
+#elseif(WITH_SOLVER STREQUAL "HLLE")
+#    target_compile_definitions(${META_PROJECT_NAME} PUBLIC WITH_SOLVER_HLLE)
+#elseif(WITH_SOLVER STREQUAL "AugRie")
+#    target_compile_definitions(${META_PROJECT_NAME} PUBLIC WITH_SOLVER_AUGRIE)
+#elseif(WITH_SOLVER STREQUAL "Rusanov")
+#    target_compile_definitions(${META_PROJECT_NAME} PUBLIC WITH_SOLVER_RUSANOV)
+#endif()
+
+add_executable(${META_PROJECT_NAME}-TEST-Runner Runners/TestRunner.cpp)
+target_link_libraries(${META_PROJECT_NAME}-TEST-Runner PRIVATE ${META_PROJECT_NAME})
