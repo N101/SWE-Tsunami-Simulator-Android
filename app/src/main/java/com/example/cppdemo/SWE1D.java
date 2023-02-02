@@ -20,12 +20,13 @@ public class SWE1D extends AppCompatActivity {
     private String outPut = "";
 
     static {
-        System.loadLibrary("cppdemo");
+        System.loadLibrary("tsunamiSim");
     }
+
     public void start(View view) {
         EditText a = (EditText) findViewById(R.id.swe1size);
         EditText b = (EditText) findViewById(R.id.swe1dtime);
-        String dirName = "swe1d_dir";
+        String dirName = ((EditText) findViewById(R.id.swe1d_dirname)).getText().toString();
         int size, time;
         File swe1d_dir = new File(Environment.getExternalStorageDirectory() + "/" + dirName);
         swe1d_dir.mkdirs();
@@ -35,9 +36,7 @@ public class SWE1D extends AppCompatActivity {
         } else {
             size = Integer.parseInt(a.getText().toString());
             time = Integer.parseInt(b.getText().toString());
-
-            outPut+= main(size, time, dirName);
-            //outPut = "testing";
+            outPut += main(size, time, dirName);
 
             Intent intent = new Intent(view.getContext(), SWE1DOutput.class);
             intent.putExtra("swe1d", outPut);

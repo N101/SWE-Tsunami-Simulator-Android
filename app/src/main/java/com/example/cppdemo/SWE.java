@@ -27,19 +27,19 @@ public class SWE extends AppCompatActivity {
     private String outPut = "";
 
     static {
-        System.loadLibrary("cppdemo");
+        System.loadLibrary("tsunamiSim");
     }
 
     public void start(View view) {
+        Spinner ss = (Spinner) findViewById(R.id.dynamic_spinner);
         EditText a = (EditText) findViewById(R.id.swex);
         EditText b = (EditText) findViewById(R.id.swey);
         EditText c = (EditText) findViewById(R.id.checkpoints);
         EditText d = (EditText) findViewById(R.id.cond);
         EditText e = (EditText) findViewById(R.id.basename_input);
-        Spinner ss = (Spinner) findViewById(R.id.dynamic_spinner);
+        String dirName = ((EditText) findViewById(R.id.swe_dirname)).getText().toString();
 
-        String dir_name = "swe";
-        File swe_dir = new File(Environment.getExternalStorageDirectory() + "/" + dir_name);
+        File swe_dir = new File(Environment.getExternalStorageDirectory() + "/" + dirName);
         swe_dir.mkdirs();
 
         String scenarioName = ss.getSelectedItem().toString();
@@ -55,7 +55,7 @@ public class SWE extends AppCompatActivity {
             cond = d.getText().toString();
             baseName = e.getText().toString();
 
-            outPut += main(scenarioName, x, y, cp, cond, baseName, dir_name);
+            outPut += main(scenarioName, x, y, cp, cond, baseName, dirName);
 
             Intent intent = new Intent(view.getContext(), SWEOutput.class);
             intent.putExtra("swe", outPut);

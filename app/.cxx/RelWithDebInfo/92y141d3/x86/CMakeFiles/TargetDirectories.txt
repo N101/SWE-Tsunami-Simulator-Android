@@ -1,3 +1,0 @@
-/home/liuqichen/AndroidStudioProjects/CppDemo2/app/.cxx/RelWithDebInfo/92y141d3/x86/CMakeFiles/cppdemo.dir
-/home/liuqichen/AndroidStudioProjects/CppDemo2/app/.cxx/RelWithDebInfo/92y141d3/x86/CMakeFiles/edit_cache.dir
-/home/liuqichen/AndroidStudioProjects/CppDemo2/app/.cxx/RelWithDebInfo/92y141d3/x86/CMakeFiles/rebuild_cache.dir

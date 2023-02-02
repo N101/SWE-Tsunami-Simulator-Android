@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.18.1)
 # Declares and names the project.
 
 
-project("cppdemo")
+project("tsunamiSimMobile")
 
 #message(${CMAKE_CURRENT_LIST_DIR})
 ##find_library(NETCDF
@@ -34,7 +34,7 @@ file(GLOB_RECURSE SOURCES "Source/*")
 
 
 add_library( # Sets the name of the library.
-        cppdemo
+        tsunamiSim
 
         # Sets the library as a shared library.
         SHARED
@@ -66,7 +66,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-        cppdemo
+        tsunamiSim
 
 #        /usr/lib64/libnetcdf.so
 #        /usr/lib64/libnetcdf_c++.so
