@@ -1,0 +1,25 @@
+# ninja log v5
+54	78	1675357892565994683	CMakeFiles/cppdemo.dir/Source/Runners/TestRunner.cpp.o	f8a9fe5927c7eef9
+78	585	1675357893075995473	CMakeFiles/cppdemo.dir/Source/Scenarios/ArtificialTsunamiScenario.cpp.o	c459d9b09baa1df8
+2	595	1675357893086995490	CMakeFiles/cppdemo.dir/libswe.cpp.o	446a14ba4c5baf43
+596	629	1675357893119995541	CMakeFiles/cppdemo.dir/Source/Scenarios/DamBreakScenario.cpp.o	d53644430829a09e
+586	689	1675357893184995641	CMakeFiles/cppdemo.dir/Source/Scenarios/BathymetryDamBreakScenario.cpp.o	df95ca3e37f94336
+689	719	1675357893215995689	CMakeFiles/cppdemo.dir/Source/Scenarios/RareRareScenario.cpp.o	25dfdec7a16a4114
+629	738	1675357893212995685	CMakeFiles/cppdemo.dir/Source/Scenarios/RadialDamBreakScenario.cpp.o	a5f90e9d6f1b9659
+719	755	1675357893241995729	CMakeFiles/cppdemo.dir/Source/Scenarios/Scenario.cpp.o	5f2c74ea5d4b139f
+738	766	1675357893250995744	CMakeFiles/cppdemo.dir/Source/Scenarios/ShockShockScenario.cpp.o	7986cfaaabcd9b8b
+33	791	1675357893282995793	CMakeFiles/cppdemo.dir/Source/Blocks/DimensionalSplitting.cpp.o	99ae60b626f0ddd2
+25	808	1675357893288995802	CMakeFiles/cppdemo.dir/Source/Blocks/Block.cpp.o	fa95922a5e00f393
+792	822	1675357893314995842	CMakeFiles/cppdemo.dir/Source/Scenarios/TsunamiScenario.cpp.o	6fd5b4b34ea6b58c
+42	844	1675357893321995853	CMakeFiles/cppdemo.dir/Source/Blocks/WavePropagationBlock.cpp.o	81f510d311459672
+47	862	1675357893339995881	CMakeFiles/cppdemo.dir/Source/Blocks/WavePropagationBlock_1D.cpp.o	a2705888182d2d9b
+0	872	1675357893340995883	CMakeFiles/cppdemo.dir/libwavespeed.cpp.o	c5b7778b65f14ffa
+7	888	1675357893379995943	CMakeFiles/cppdemo.dir/libswe1d.cpp.o	640d13484e52d128
+766	894	1675357893388995957	CMakeFiles/cppdemo.dir/Source/Scenarios/SupercriticalFlowScenario.cpp.o	48d953598c8c5b7f
+822	1229	1675357893721996473	CMakeFiles/cppdemo.dir/Source/Tools/ProgressBar.cpp.o	d373cf40b73ab110
+755	1311	1675357893803996599	CMakeFiles/cppdemo.dir/Source/Scenarios/SubcriticalFlowScenario.cpp.o	50757b5a0ddd214d
+844	1549	1675357894039996965	CMakeFiles/cppdemo.dir/Source/Writers/VTKSWE1DWriter.cpp.o	bfcd01781ad9d58
+872	1565	1675357894056996991	CMakeFiles/cppdemo.dir/Source/Writers/Writer.cpp.o	5de6c448e1bac1cd
+862	1611	1675357894101997061	CMakeFiles/cppdemo.dir/Source/Writers/VTKSWEWriter.cpp.o	e1c838ae1c23ebcc
+808	1615	1675357894102997062	CMakeFiles/cppdemo.dir/Source/Tools/Args.cpp.o	aa4ef498c23e336a
+1615	1706	1675357894192997202	/home/liuqichen/AndroidStudioProjects/swe_android/app/build/intermediates/cxx/Debug/3z4m6464/obj/x86_64/libcppdemo.so	faf19fb810645062

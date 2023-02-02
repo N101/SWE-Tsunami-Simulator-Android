@@ -1,0 +1,163 @@
+vtune: Warning: Events for detailed GPU utilization analysis can be collected for Intel GPUs only.
+vtune: Warning: Access to /proc/kallsyms file is limited. Consider changing /proc/sys/kernel/kptr_restrict to 0 to enable resolution of OS kernel and kernel module symbols.
+vtune: Warning: Collection of context switches is not possible due to a lack of credentials. Make sure you have read/write access to debugFS. You may either run the analysis with root privileges (recommended) or follow the configuration instructions provided in the Linux and Android Kernel Analysis help topic.
+vtune: Warning: To profile kernel modules during the session, make sure they are available in the /lib/modules/kernel_version/ location.
+vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/r001cgc -command stop.
+
+*************************************************************
+Welcome to SWE
+
+SWE Copyright (C) 2012-2022
+  Technische Universitaet Muenchen
+  Department of Informatics
+  Chair of Scientific Computing
+  http://www5.in.tum.de/SWE
+
+SWE comes with ABSOLUTELY NO WARRANTY.
+SWE is a free software, and you are welcome
+to redistribute it under certain conditions.
+Details can be found in the file 'LICENSE'.
+*************************************************************
+boundaryCond = PPPP
+boundaryCond = PPP
+boundaryCond = PP
+boundaryCond = P
+writing time step...
+new checkpoint after 1 iterations
+writing time step...
+new checkpoint after 1 iterations
+writing time step...
+new checkpoint after 2 iterations
+writing time step...
+new checkpoint after 2 iterations
+writing time step...
+new checkpoint after 3 iterations
+writing time step...
+new checkpoint after 3 iterations
+writing time step...
+new checkpoint after 4 iterations
+writing time step...
+new checkpoint after 4 iterations
+writing time step...
+new checkpoint after 5 iterations
+writing time step...
+new checkpoint after 5 iterations
+writing time step...
+new checkpoint after 6 iterations
+writing time step...
+new checkpoint after 6 iterations
+writing time step...
+new checkpoint after 7 iterations
+writing time step...
+new checkpoint after 8 iterations
+writing time step...
+new checkpoint after 8 iterations
+writing time step...
+new checkpoint after 9 iterations
+writing time step...
+new checkpoint after 10 iterations
+writing time step...
+new checkpoint after 10 iterations
+writing time step...
+new checkpoint after 11 iterations
+writing time step...
+new checkpoint after 12 iterations
+writing time step...
+
+*************************************************************
+SWE Finished successfully.
+*************************************************************
+vtune: Collection stopped.
+vtune: Using result path `/dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/r001cgc'
+vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               
+vtune: Warning: Events for detailed GPU utilization analysis can be collected for Intel GPUs only.
+vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-6643-i22r02c04s03.sc' fivtune: Executing actions 12 % Loading 'systemcollector-6643-i22r02c04s03.sc' fivtune: Executing actions 12 % Loading 'system-wide.perf' file                  vtune: Executing actions 12 % Loading 'system-wide.stat.perf' file             vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving information for dangling locations     vtune: Executing actions 19 % Resolving information for `ld-2.26.so'           vtune: Executing actions 19 % Resolving information for `libpthread-2.26.so'   vtune: Executing actions 19 % Resolving information for `libnetcdf_c++.so.4.2.0
+vtune: Warning: Cannot locate debugging information for file `/lib64/ld-2.26.so'.
+vtune: Warning: Cannot locate debugging information for file `/lib64/libpthread-2.26.so'.
+vtune: Executing actions 19 % Resolving information for `libnetcdf.so.18.0.0'  vtune: Executing actions 19 % Resolving information for `libc-2.26.so'         
+vtune: Warning: Cannot locate debugging information for file `/lib64/libc-2.26.so'.
+vtune: Executing actions 19 % Resolving information for `SWE-TEST-Runner'      vtune: Executing actions 19 % Resolving information for `libgfortran.so.5.0.0' vtune: Executing actions 19 % Resolving information for `libhdf5.so.103.3.0'   vtune: Executing actions 20 % Resolving information for `libhdf5.so.103.3.0'   vtune: Executing actions 21 % Resolving information for `libhdf5.so.103.3.0'   vtune: Executing actions 22 % Resolving information for `libhdf5.so.103.3.0'   vtune: Executing actions 22 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving thread name information                vtune: Executing actions 24 % Resolving thread name information                vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 27 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 31 % Processing profile metrics and debug information vtune: Executing actions 31 % Preparing output tree                            vtune: Executing actions 31 % Parsing columns in input tree                    vtune: Executing actions 32 % Parsing columns in input tree                    vtune: Executing actions 32 % Creating top-level columns                       vtune: Executing actions 32 % Creating top-level rows                          vtune: Executing actions 33 % Creating top-level rows                          vtune: Executing actions 33 % Preparing output tree                            vtune: Executing actions 33 % Parsing columns in input tree                    vtune: Executing actions 33 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level columns                       vtune: Executing actions 34 % Creating top-level rows                          vtune: Executing actions 35 % Creating top-level rows                          vtune: Executing actions 35 % Preparing output tree                            vtune: Executing actions 35 % Parsing columns in input tree                    vtune: Executing actions 35 % Creating top-level columns                       vtune: Executing actions 36 % Creating top-level columns                       vtune: Executing actions 36 % Creating top-level rows                          vtune: Executing actions 37 % Creating top-level rows                          vtune: Executing actions 37 % Preparing output tree                            vtune: Executing actions 37 % Parsing columns in input tree                    vtune: Executing actions 37 % Creating top-level columns                       vtune: Executing actions 38 % Creating top-level columns                       vtune: Executing actions 38 % Creating top-level rows                          vtune: Executing actions 39 % Creating top-level rows                          vtune: Executing actions 39 % Preparing output tree                            vtune: Executing actions 39 % Parsing columns in input tree                    vtune: Executing actions 39 % Creating top-level columns                       vtune: Executing actions 39 % Creating top-level rows                          vtune: Executing actions 40 % Creating top-level rows                          vtune: Executing actions 40 % Preparing output tree                            vtune: Executing actions 40 % Parsing columns in input tree                    vtune: Executing actions 40 % Creating top-level columns                       vtune: Executing actions 41 % Creating top-level columns                       vtune: Executing actions 41 % Creating top-level rows                          vtune: Executing actions 42 % Creating top-level rows                          vtune: Executing actions 42 % Preparing output tree                            vtune: Executing actions 42 % Parsing columns in input tree                    vtune: Executing actions 42 % Creating top-level columns                       vtune: Executing actions 43 % Creating top-level columns                       vtune: Executing actions 43 % Creating top-level rows                          vtune: Executing actions 44 % Creating top-level rows                          vtune: Executing actions 44 % Preparing output tree                            vtune: Executing actions 44 % Parsing columns in input tree                    vtune: Executing actions 44 % Creating top-level columns                       vtune: Executing actions 45 % Creating top-level columns                       vtune: Executing actions 45 % Creating top-level rows                          vtune: Executing actions 46 % Creating top-level rows                          vtune: Executing actions 46 % Preparing output tree                            vtune: Executing actions 46 % Parsing columns in input tree                    vtune: Executing actions 46 % Creating top-level columns                       vtune: Executing actions 46 % Creating top-level rows                          vtune: Executing actions 47 % Creating top-level rows                          vtune: Executing actions 47 % Preparing output tree                            vtune: Executing actions 47 % Parsing columns in input tree                    vtune: Executing actions 48 % Parsing columns in input tree                    vtune: Executing actions 48 % Creating top-level columns                       vtune: Executing actions 48 % Creating top-level rows                          vtune: Executing actions 49 % Creating top-level rows                          vtune: Executing actions 49 % Preparing output tree                            vtune: Executing actions 49 % Parsing columns in input tree                    vtune: Executing actions 49 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Preparing output tree                            vtune: Executing actions 50 % Parsing columns in input tree                    vtune: Executing actions 50 % Creating top-level columns                       vtune: Executing actions 50 % Creating top-level rows                          vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 50 % Precomputing frequently used data                vtune: Executing actions 50 % Precomputing frequently used data                vtune: Executing actions 50 % Updating precomputed scalar metrics              vtune: Executing actions 50 % Discarding redundant overtime data               vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              
+Collection and Platform Info
+----------------------------
+Parameter                 r001cgc                                                                                                                                                                                              
+------------------------  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Application Command Line  /dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/SWE-TEST-Runner                                                                                                                                       
+Operating System          4.12.14-197.40-default NAME="SLES"
+VERSION="15-SP1"
+VERSION_ID="15.1"
+PRETTY_NAME="SUSE Linux Enterprise Server 15 SP1"
+ID="sles"
+ID_LIKE="suse"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:suse:sles:15:sp1"
+Computer Name             i22r02c04s03                                                                                                                                                                                         
+Result Size               17740909                                                                                                                                                                                             
+Collection start time     19:58:19 19/12/2022 UTC                                                                                                                                                                              
+Collection stop time      19:58:25 19/12/2022 UTC                                                                                                                                                                              
+Collector Type            Driverless Perf system-wide sampling                                                                                                                                                                 
+
+CPU
+---
+Parameter          r001cgc                                               
+-----------------  ------------------------------------------------------
+Name               Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+Frequency          2599998067                                            
+Logical CPU Count  56                                                    
+
+GPU
+---
+Parameter            r001cgc 
+-------------------  --------
+Name                         
+Vendor                       
+EU Count                     
+Max EU Thread Count          
+Max Core Frequency           
+LLC size             18350080
+
+Summary
+-------
+Elapsed Time:             6.028
+Paused Time:              0.0  
+CPU Time:                 5.324
+Average CPU Utilization:  0.872
+CPI Rate:                 0.763
+
+Average DRAM Bandwidth
+----------------------
+Package    Total, GB/sec:Self
+---------  ------------------
+package_0               1.531
+package_1               0.279
+
+Event summary
+-------------
+Hardware Event Type                 Hardware Event Count:Self  Hardware Event Sample Count:Self  Events Per Sample  Precise:Self
+----------------------------------  -------------------------  --------------------------------  -----------------  ------------
+CPU_CLK_UNHALTED.THREAD                           13798200000                              5307  2600000                   False
+CPU_CLK_UNHALTED.REF_TSC                          13842400000                              5324  2600000                   False
+INST_RETIRED.ANY                                  18075200000                              6952  2600000                   False
+CPU_CLK_UNHALTED.REF_XCLK                           532015960                              5320  100003                    False
+CPU_CLK_UNHALTED.ONE_THREAD_ACTIVE                  532215966                              5322  100003                    False
+
+Uncore Event summary
+--------------------
+Uncore Event Type                   Uncore Event Count:Self
+----------------------------------  -----------------------
+UNC_M_CAS_COUNT.RD[UNIT0]                          43043028
+UNC_M_CAS_COUNT.RD[UNIT1]                          43301095
+UNC_M_CAS_COUNT.RD[UNIT4]                           9981007
+UNC_M_CAS_COUNT.RD[UNIT5]                           9747647
+UNC_M_CAS_COUNT.WR[UNIT0]                          26058537
+UNC_M_CAS_COUNT.WR[UNIT1]                          26277568
+UNC_M_CAS_COUNT.WR[UNIT4]                           5966897
+UNC_M_CAS_COUNT.WR[UNIT5]                           6074016
+UNC_Q_TxL_FLITS_G0.DATA[UNIT0]                    107263208
+UNC_Q_TxL_FLITS_G0.DATA[UNIT1]                    110075648
+UNC_Q_TxL_FLITS_G0.NON_DATA[UNIT0]                 82599693
+UNC_Q_TxL_FLITS_G0.NON_DATA[UNIT1]                 85289099
+UNC_Q_RxL_FLITS_G1.DRS_DATA[UNIT0]                 18500488
+UNC_Q_RxL_FLITS_G1.DRS_DATA[UNIT1]                 20066272
+UNC_Q_RxL_FLITS_G2.NCB_DATA[UNIT0]                        0
+UNC_Q_RxL_FLITS_G2.NCB_DATA[UNIT1]                        0
+vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
