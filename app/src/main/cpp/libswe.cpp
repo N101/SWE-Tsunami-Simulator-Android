@@ -99,9 +99,10 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0
     );
     BoundaryType curr;
-//    //! Set boundaryTypes in Block::boundary_
+    output << "boundaryCond = \n" << boundaryCond << std::endl;
+    //! Set boundaryTypes in Block::boundary_
     for (int i = 0; i < 4; i++) {
-        output << "boundaryCond = " << boundaryCond << std::endl;
+
         if (boundaryCond.at(0) == 'W') {
             // if((boundaryCond.front()).compare('W')) {
             curr = Wall;

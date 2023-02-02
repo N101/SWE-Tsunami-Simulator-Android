@@ -1,3 +1,0 @@
-/home/liuqichen/AndroidStudioProjects/swe_android/app/.cxx/Debug/3z4m6464/armeabi-v7a/CMakeFiles/cppdemo.dir
-/home/liuqichen/AndroidStudioProjects/swe_android/app/.cxx/Debug/3z4m6464/armeabi-v7a/CMakeFiles/edit_cache.dir
-/home/liuqichen/AndroidStudioProjects/swe_android/app/.cxx/Debug/3z4m6464/armeabi-v7a/CMakeFiles/rebuild_cache.dir
