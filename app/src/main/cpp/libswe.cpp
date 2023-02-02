@@ -3,6 +3,7 @@
 //#include </usr/include/netcdf.h>
 
 #include <iostream>
+#include <fstream>
 #include "Source/Blocks/DimensionalSplitting.hpp"
 #include "Source/Scenarios/RadialDamBreakScenario.hpp"
 #include "Source/Scenarios/BathymetryDamBreakScenario.hpp"
@@ -82,7 +83,8 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     // Boundary size of the ghost layers
     Writers::BoundarySize boundarySize = {{1, 1, 1, 1}};
 
-    std::string fileName = Writers::generateBaseFileName(baseName, dir_name, 0, 0);
+    std::string absolute_path = "/sdcard/" + dir_name + "/";
+    std::string fileName = Writers::generateBaseFileName(baseName, absolute_path, 0, 0);
 
     auto writer = Writers::Writer::createWriterInstance(
             fileName,
@@ -99,7 +101,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0
     );
     BoundaryType curr;
-    output << "boundaryCond = \n" << boundaryCond << std::endl;
+    output << "boundaryCond = " << boundaryCond << std::endl;
     //! Set boundaryTypes in Block::boundary_
     for (int i = 0; i < 4; i++) {
 
@@ -144,7 +146,6 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             iterations++;
         }
 
-//    std::cout << "\n\nnew checkpoint\n";
         output << "new checkpoint after " << iterations << " iterations\n";
         // Write output
         writer->writeTimeStep(
@@ -154,11 +155,16 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
         );
     }
 
+
+    std::ofstream output_text(absolute_path + "output.txt");
+    output_text << output.str();
+
+    // free space
     delete wave_block;
     delete &scenario;
     delete[] checkPoints;
-    std::string ret = output.str();
-    return ret;
+
+    return output.str();
 }
 
 // To avoid object slicing, Scenario is changed to be marked as pure virtual class through making functions "=0",

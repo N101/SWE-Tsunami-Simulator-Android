@@ -9,7 +9,7 @@ Writers::VTKSWE1DWriter::VTKSWE1DWriter(const std::string& basename, const RealT
 
   // Initialize VTP stream
   std::ostringstream vtpFileName;
-  vtpFileName << "/sdcard/" << basename_ << ".vtp";
+  vtpFileName << basename_ << ".vtp";
 
   vtpFile_ = new std::ofstream(vtpFileName.str().c_str());
 
@@ -34,10 +34,9 @@ void Writers::VTKSWE1DWriter::write(const RealType time, const RealType* h, cons
   *vtpFile_
     << "<DataSet timestep=\"" << time << R"(0" group="" part="0" file=")" << fileName << "\"/> " << std::endl;
 
-  std::string path = "/sdcard/";
   // Write VTK file
-  std::ofstream vtkFile(path + fileName);
-//  assert(vtkFile.good());
+  std::ofstream vtkFile(fileName);
+  // assert(vtkFile.good());
 
   // VTL XML header
   vtkFile

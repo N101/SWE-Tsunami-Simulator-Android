@@ -29,10 +29,9 @@
 
 #include <sstream>
 
-std::string Writers::generateBaseFileName(const std::string& baseName,const std::string& dir_name, int blockPositionX, int blockPositionY) {
+std::string Writers::generateBaseFileName(const std::string& baseName,const std::string& absolute_path, int blockPositionX, int blockPositionY) {
   std::ostringstream fileName;
-  fileName << "/sdcard/" << dir_name << "/";
-  fileName << baseName << "_" << blockPositionX << blockPositionY;
+  fileName << absolute_path << baseName << "_" << blockPositionX << blockPositionY;
 
   return fileName.str();
 }

@@ -30,7 +30,7 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        setTitle("Home Screen");
+        setTitle("Tsunami Simulation");
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageResource(R.drawable.the_great_wave_off_kanagawa_7107112_1280);
         

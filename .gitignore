@@ -4,3 +4,4 @@ build
 Debug
 debug
 .cxx
+local.properties

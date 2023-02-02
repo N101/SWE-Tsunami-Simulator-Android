@@ -41,6 +41,7 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
     unsigned int domain_size = size;// for other scenarios
 
     // Scenarios
+    //todo spinner
     //Scenarios::DamBreakScenario scenario(domain_size);
     Scenarios::RareRareScenario scenario(10, -10,  domain_size);
     //Scenarios::ShockShockScenario scenario(10, 10, domain_size);
@@ -57,6 +58,7 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
     auto* b = new RealType[domain_size + 2];
 
 
+    //todo option: randomized bathymetry
     //for dam/shock/rare scenarios
     for (unsigned int i = 0; i < domain_size + 2; i++) {
         //b[i] = scenario.getBathymetry(i);// for sub/super
@@ -79,8 +81,10 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
         hu[i] = scenario.getMomentum(i);//applys to all scenarios
     }
 
+    std::string absolute_path = "/sdcard/" + dir_name + "/";
+
     // Create a writer that is responsible printing out values
-    Writers::VTKSWE1DWriter     vtkSwe1dWriter(dir_name + "/SWE1D", scenario.getCellSize());
+    Writers::VTKSWE1DWriter     vtkSwe1dWriter(absolute_path + "SWE1D", scenario.getCellSize());
 
     // Helper class computing the wave propagation
     Blocks::WavePropagationBlock_1D wavePropagation(h, hu, b, domain_size, scenario.getCellSize());
@@ -117,8 +121,8 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
     // Free allocated memory
     delete[] h;
     delete[] hu;
-    //std::string test = "testing from main";
-    //return test;
+    std::ofstream output_text(absolute_path + "output.txt");
+    output_text << output.str();
     return output.str();
 }
 

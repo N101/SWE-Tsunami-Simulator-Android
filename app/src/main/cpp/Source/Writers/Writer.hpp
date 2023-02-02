@@ -37,7 +37,7 @@
 namespace Writers {
 
     std::string
-    generateBaseFileName(const std::string &baseName, const std::string& dir_name, int blockPositionX, int blockPositionY);
+    generateBaseFileName(const std::string &baseName, const std::string& absolute_path, int blockPositionX, int blockPositionY);
 
     /**
      * This struct is used so we can initialize this array
