@@ -193,19 +193,6 @@ namespace Solvers {
         }
 
         void setfluxFunctionDiff(T (&fluxFuncDiff)[2]) {
-//            int tid;
-//            T fluxFuncR[2]{huRight_, 0};
-//            T fluxFuncL[2]{huLeft_, 0};
-//            // #pragma omp parallel private(tid) lastprivate(fluxFuncR, fluxFuncL) /*num_threads(2)*/
-//            // {
-//            // tid = omp_get_thread_num();
-//            // if(tid == 0) {
-//            fluxFuncR[1] = huRight_ * uRight_ + static_cast<T>(0.5) * gravity_ * std::pow(hRight_, 2);
-//            // } else {
-//            std::cout << "these are none master htreads\n";
-//            fluxFuncL[1] = huLeft_ * uLeft_ + static_cast<T>(0.5) * gravity_ * std::pow(hLeft_, 2);
-//            // }
-//            // }
             T fluxFuncR[2]{huRight_, huRight_ * uRight_ +
                                      static_cast<T>(0.5) * gravity_ * std::pow(hRight_, 2)};
             T fluxFuncL[2]{huLeft_,
@@ -271,4 +258,3 @@ namespace Solvers {
     };
 
 } // namespace Solvers
-//TODO rename

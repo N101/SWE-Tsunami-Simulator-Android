@@ -100,8 +100,14 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0,
             0
     );
+
+    // Write basic info
+    output << "Scenario: " << scenarioName << "\n";
+    output << "Domain size: " << x << " x " << y << "\n";
+    output << "Time: " << "\n";
+    output << "boundaryCond = " << boundaryCond << "\n\n";
+
     BoundaryType curr;
-    output << "boundaryCond = " << boundaryCond << "\n";
     //! Set boundaryTypes in Block::boundary_
     for (int i = 0; i < 4; i++) {
 

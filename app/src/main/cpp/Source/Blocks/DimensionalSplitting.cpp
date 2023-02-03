@@ -75,7 +75,6 @@ void Blocks::DimensionalSplitting::updateDirection_Y(RealType& maxWaveSpeed) {
 
 // two directions for momentum
 void Blocks::DimensionalSplitting::updateUnknowns(RealType dt) {
-    // todo check index
     for (int i = 1; i < nx_ + 1; i++) {
         for (int j = 1; j < ny_ + 1; j++) {
             h_[i][j] -= dt / dx_ * (hNetUpdate_left[i][j - 1] + hNetUpdate_right[i - 1][j - 1])

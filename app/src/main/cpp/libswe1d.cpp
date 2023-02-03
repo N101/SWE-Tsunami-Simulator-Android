@@ -1,17 +1,14 @@
 
 
 #include <string>
-#include <fenv.h>
-
+#include <cfenv>
 
 #include "Source/Scenarios/DamBreakScenario.hpp"
 #include "Source/Scenarios/ShockShockScenario.hpp"
 #include "Source/Scenarios/RareRareScenario.hpp"
 #include "Source/Scenarios/SubcriticalFlowScenario.hpp"
 #include "Source/Scenarios/SupercriticalFlowScenario.hpp"
-//#include "Source/Tools/Args.hpp"
 #include "Source/Tools/RealType.hpp"
-//#include "Source/Writers/ConsoleWriter.hpp"
 #include "Source/Tools/RealType.hpp"
 #include "Source/Blocks/WavePropagationBlock_1D.hpp"
 #include "Source/Writers/VTKSWE1DWriter.hpp"
@@ -24,6 +21,7 @@ std::string
 runner_main(const std::string &scenario, int size, int time_step, const std::string &dir_name);
 
 std::string jstring2string(JNIEnv *env, jstring jStr);
+
 Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domain_size);
 
 
@@ -40,6 +38,7 @@ double createRandomNumber_MAIN(double min, double max);
 
 std::string runner_main(const std::string &scenario_name, int size, int time_step,
                         const std::string &dir_name) {
+
     // Triggers signals on floating point errors, i.e. prohibits quiet NaNs and alike.
     // feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW); causes SWE1D to stop
 
@@ -59,27 +58,27 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     // Bathymetry
     auto *b = new RealType[domain_size + 2];
 
+    output << "Scenario: " + scenario_name << "\n\n";
+    output << "Domain size: " << domain_size << "\n";
+    output << "Time: " << time_step << "\n\n";
 
-    //todo option: randomized bathymetry
-    //for dam/shock/rare scenarios
+    // Initialize scenario & write basic info
     for (unsigned int i = 0; i < domain_size + 2; i++) {
         //b[i] = scenario.getBathymetry(i);// for sub/super
-
         //for other scenarios, feel free to set any range (x, y)
         //with x < 0, otherwise meaningless: no water, every cell is dry
-        //std::cout << "domainsize: " <<domain_size <<" "<< i <<std::endl;
         // if(i == domain_size){
         //   b[i] = 100;
         // }
         //Note: b[i] must be set to a valid number, otherwise it will cause undefined behavior
 
-        //comment this out if you want some random bathymetry in the domain       b[i] = createRandomNumber_MAIN(-2, -1);
+        //comment this out if you want some random bathymetry in the domain b[i] = createRandomNumber_MAIN(-2, -1);
         b[i] = 0; //no bathymetry at all
 
         h[i] = scenario.getHeight(i);//for shockshock and rarerare
         hu[i] = scenario.getMomentum(i);//applys to all scenarios
     }
-
+    //todo randomized bathymetry
     std::string absolute_path = "/sdcard/" + dir_name + "/";
 
     // Create a writer that is responsible printing out values
@@ -89,7 +88,6 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     Blocks::WavePropagationBlock_1D wavePropagation(h, hu, b, domain_size, scenario.getCellSize());
 
     // Write initial data
-
     // Current time of simulation
     double t = 0;
     vtkSwe1dWriter.write(t, h, hu, domain_size);
@@ -106,14 +104,13 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
         // Update unknowns from net updates
         wavePropagation.updateUnknowns(maxTimeStep);
 
-        output << "Computing iteration " << i << " at time " << t << " with max. timestep "
+        output << "Iteration " << i << " at time " << t << " with max. timestep "
                << maxTimeStep << std::endl;
 
         // Update time
         t += maxTimeStep;
 
         // Write new values
-        //consoleWriter.write(h, hu, domain_size);
         vtkSwe1dWriter.write(t, h, hu, domain_size);
 
     }
