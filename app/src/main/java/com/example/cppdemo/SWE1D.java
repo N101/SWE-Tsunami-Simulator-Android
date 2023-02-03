@@ -22,8 +22,6 @@ import java.io.File;
 
 public class SWE1D extends AppCompatActivity {
 
-    private String outPut = "";
-
     static {
         System.loadLibrary("tsunamiSim");
     }
@@ -43,14 +41,17 @@ public class SWE1D extends AppCompatActivity {
         } else {
             size = Integer.parseInt(a.getText().toString());
             time = Integer.parseInt(b.getText().toString());
-            outPut += main(scenarioName, size, time, dirName);
+            String outPut = main(scenarioName, size, time, dirName);
 
             Intent intent = new Intent(view.getContext(), SWE1DOutput.class);
-            intent.putExtra("swe1d", outPut);
+            //clear previous text output
+
+            intent.putExtra("swe1dOutput", outPut);
             startActivity(intent);
         }
 
     }
+    //todo rename cppdemo
 
 
     /// Back button function

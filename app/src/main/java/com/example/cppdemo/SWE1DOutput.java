@@ -29,7 +29,7 @@ public class SWE1DOutput extends AppCompatActivity {
         assert a != null;
         a.setDisplayHomeAsUpEnabled(true);
 
-        text = getIntent().getStringExtra("swe1d");
+        text = getIntent().getStringExtra("swe1dOutput");
         String[] textArray;
         textArray = text.split("\n");
         text = "";

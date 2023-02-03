@@ -60,8 +60,6 @@ JNIEXPORT jstring
 
 JNICALL Java_com_example_cppdemo_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a, jint b, jint c,
                                                 jint d) {
-// TODO: implement main()
-//    declarations
     double ql[2]{0, 0}, qr[2]{0, 0};
     double ul{0}, ur{0}, hRoe{0}, hl{0}, hr{0}, uRoe{0};
     double e1{0}, e2{0}; //eigenvalue 1 is e1, eigenvalue 2 is e2

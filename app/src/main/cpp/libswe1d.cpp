@@ -48,15 +48,8 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     //unsigned int domain_size = 24;// for sub/supercritical
     unsigned int domain_size = size;// for other scenarios
 
-    // Scenarios
-    //todo spinner
-    //Scenarios::DamBreakScenario scenario(domain_size);
-    //Scenarios::RareRareScenario scenario(10, -10, domain_size);
+    // Scenario
     auto &scenario = *getScenarioBasedOnName(scenario_name, domain_size);
-    //Scenarios::ShockShockScenario scenario(10, 10, domain_size);
-    //Scenarios::SubcriticalFlowScenario scenario;
-    //Scenarios::SupercriticalFlowScenario scenario;
-
 
     // Allocate memory
     // Water height
@@ -83,7 +76,6 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
         //comment this out if you want some random bathymetry in the domain       b[i] = createRandomNumber_MAIN(-2, -1);
         b[i] = 0; //no bathymetry at all
 
-        //h[i] = scenario.getHeight(i);//for dam break and sub/super
         h[i] = scenario.getHeight(i);//for shockshock and rarerare
         hu[i] = scenario.getMomentum(i);//applys to all scenarios
     }

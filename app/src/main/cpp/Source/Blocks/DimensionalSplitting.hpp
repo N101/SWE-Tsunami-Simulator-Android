@@ -29,7 +29,6 @@ namespace Blocks{
     
     //solver
     Solvers::fwavesolver<RealType> solver;
-    //Solvers::FWaveSolver<RealType> solver;
     
     public:
         DimensionalSplitting(int size_x, int size_y, RealType dx, RealType dy);
