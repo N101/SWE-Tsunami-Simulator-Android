@@ -101,12 +101,11 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0
     );
     BoundaryType curr;
-    output << "boundaryCond = " << boundaryCond << std::endl;
+    output << "boundaryCond = " << boundaryCond << "\n";
     //! Set boundaryTypes in Block::boundary_
     for (int i = 0; i < 4; i++) {
 
         if (boundaryCond.at(0) == 'W') {
-            // if((boundaryCond.front()).compare('W')) {
             curr = Wall;
         } else if (boundaryCond.at(0) == 'O') {
             curr = Outflow;
@@ -120,7 +119,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
 
     // Write zero time step
     writer->writeTimeStep(wave_block->getWaterHeight(), wave_block->getDischargeHu(),
-                          wave_block->getDischargeHv(), 0.0, &curr);//, nullptr);
+                          wave_block->getDischargeHv(), 0.0, &curr);
 
     unsigned int iterations = 0;
     double simulationTime = 0.0;
@@ -146,7 +145,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             iterations++;
         }
 
-        output << "new checkpoint after " << iterations << " iterations\n";
+        //output << "new checkpoint after " << iterations << " iterations\n";
         // Write output
         writer->writeTimeStep(
                 wave_block->getWaterHeight(), wave_block->getDischargeHu(),

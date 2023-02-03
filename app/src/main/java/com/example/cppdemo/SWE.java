@@ -54,7 +54,7 @@ public class SWE extends AppCompatActivity {
             cond = d.getText().toString();
             baseName = e.getText().toString();
 
-            outPut += main(scenarioName, x, y, cp, cond, baseName, dirName);
+            outPut = main(scenarioName, x, y, cp, cond, baseName, dirName);
 
             Intent intent = new Intent(view.getContext(), SWEOutput.class);
             intent.putExtra("swe", outPut);
@@ -76,7 +76,7 @@ public class SWE extends AppCompatActivity {
         setContentView(R.layout.activity_swe);
         setTitle("SWE");
 
-        Spinner scenarioSelector = (Spinner) findViewById(R.id.swe_scenario_spinner);
+        Spinner scenarioSelector = findViewById(R.id.swe_scenario_spinner);
         String[] items = new String[]{"RadialDamBreakScenario", "ArtificialTsunamiScenario", "BathymetryDamBreakScenario"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, items);

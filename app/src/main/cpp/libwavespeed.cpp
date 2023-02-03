@@ -69,14 +69,6 @@ JNICALL Java_com_example_cppdemo_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a
     double alfa1{0}, alfa2{0};
 
 //    Input value
-/*    cout << "Enter the leftstate height: ";
-    cin >> ql[0];
-    cout << "Enter the leftstate height * momentum: ";
-    cin >> ql[1];
-    cout << "Enter the rightstate height: ";
-    cin >> qr[0];
-    cout << "Enter the rightstate height * momentum: ";
-    cin >> qr[1];*/
     ql[0] = a;
     ql[1] = b;
     qr[0] = c;

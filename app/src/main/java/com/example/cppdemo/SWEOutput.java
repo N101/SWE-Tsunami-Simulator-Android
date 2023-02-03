@@ -34,16 +34,16 @@ public class SWEOutput extends AppCompatActivity {
 
         text = getIntent().getStringExtra("swe");
 
-        String[] textArray;
-        textArray = text.split("\n");
-        text = "";
-
-        for (int i = 0; i < textArray.length; i++) {
-            if (textArray[i].contains("checkpoint")) {
-                textArray[i] = textArray[i].toUpperCase();
-            }
-            text += text == "" ? textArray[i] : textArray[i] + "\n";
-        }
+//        String[] textArray;
+//        textArray = text.split("\n");
+//        text = "";
+//
+//        for (int i = 0; i < textArray.length; i++) {
+//            if (textArray[i].contains("checkpoint")) {
+//                textArray[i] = textArray[i].toUpperCase();
+//            }
+//            text += text == "" ? textArray[i] : textArray[i] + "\n";
+//        }
 
         TextView textView = (TextView) findViewById(R.id.textView5);
         textView.setMovementMethod(new ScrollingMovementMethod());
