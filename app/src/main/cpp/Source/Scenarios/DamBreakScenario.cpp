@@ -48,7 +48,7 @@ RealType Scenarios::DamBreakScenario::getMomentum(unsigned int pos) const {
     return momentumOfRiver;
 }
 
-unsigned int Scenarios::DamBreakScenario::getHeight(unsigned int pos) const {
+RealType Scenarios::DamBreakScenario::getHeight(unsigned int pos) const {
     if (pos <= size_ / 2) {
         return 15;
     }

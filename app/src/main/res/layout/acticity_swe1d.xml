@@ -12,16 +12,17 @@
         android:id="@+id/swe1size"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:layout_marginBottom="516dp"
+        android:autofillHints="50"
         android:ems="10"
         android:hint="Domain size"
         android:inputType="numberDecimal"
         android:text="50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127" />
 
     <EditText
         android:id="@+id/swe1dtime"
@@ -32,13 +33,14 @@
         android:ems="10"
         android:hint="Simulation time"
         android:inputType="numberDecimal"
-        android:text="1"
+        android:text="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swe1size"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:autofillHints="50" />
 
 
     <Button
@@ -54,19 +56,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swe1dtime" />
 
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginBottom="4dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/swe1size"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints">-->
+
+    <!--    </LinearLayout>-->
+
+    <Spinner
+        android:id="@+id/swe1d_scenario_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="51dp"
+        android:padding="0dp"
+        android:popupBackground="@color/waveBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/swe1d_dirname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:layout_marginBottom="68dp"
         android:ems="10"
         android:hint="Enter the base name"
         android:inputType="textPersonName"
         android:text="SWE1D_directory"
-        app:layout_constraintBottom_toTopOf="@+id/start_swe1d"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swe1dtime" />
+        app:layout_constraintTop_toBottomOf="@+id/swe1dtime"
+        app:layout_constraintVertical_bias="0.006"
+        android:autofillHints="swe1d_dir" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

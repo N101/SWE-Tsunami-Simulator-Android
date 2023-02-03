@@ -1,10 +1,11 @@
 #pragma once
 
 #include "../Tools/RealType.hpp"
+#include "Scenario1D.hpp"
 
 namespace Scenarios {
 
-    class SubcriticalFlowScenario {
+    class SubcriticalFlowScenario: public Scenario1D {
         /**number of cells*/
         const unsigned int size_ = 25;
         RealType bathymetry;

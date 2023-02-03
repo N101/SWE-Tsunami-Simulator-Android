@@ -9,11 +9,11 @@ Scenarios::RareRareScenario::RareRareScenario(double h, double hu, unsigned int 
 
 RealType Scenarios::RareRareScenario::getCellSize() const { return RealType(1000) / size_; }
 
-RealType Scenarios::RareRareScenario::getHeight() {return h_;}
+RealType Scenarios::RareRareScenario::getHeight([[maybe_unused]] unsigned int pos) const {return h_;}
 
 
 //simplify to one method, to match call in Main
-RealType Scenarios::RareRareScenario::getMomentum(unsigned int pos){
+RealType Scenarios::RareRareScenario::getMomentum(unsigned int pos) const {
     if(pos <= size_ / 2){
         return hul_;
     }

@@ -20,18 +20,26 @@
 #include <string>
 #include <iostream>
 
-std::string runner_main(int size, int time_step, const std::string& dir_name);
+std::string
+runner_main(const std::string &scenario, int size, int time_step, const std::string &dir_name);
+
 std::string jstring2string(JNIEnv *env, jstring jStr);
+Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domain_size);
+
+
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_example_cppdemo_SWE1D_main(JNIEnv *env, jobject thiz, jint size, jint time_step, jstring dir) {
+Java_com_example_cppdemo_SWE1D_main(JNIEnv *env, jobject thiz, jstring scenario, jint size,
+                                    jint time_step, jstring dir) {
     std::string dir_name = jstring2string(env, dir);
-    return env->NewStringUTF(runner_main(size, time_step, dir_name).c_str());
+    std::string scenario_name = jstring2string(env, scenario);
+    return env->NewStringUTF(runner_main(scenario_name, size, time_step, dir_name).c_str());
 }
 
 double createRandomNumber_MAIN(double min, double max);
 
-std::string runner_main(int size, int time_step, const std::string& dir_name) {
+std::string runner_main(const std::string &scenario_name, int size, int time_step,
+                        const std::string &dir_name) {
     // Triggers signals on floating point errors, i.e. prohibits quiet NaNs and alike.
     // feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW); causes SWE1D to stop
 
@@ -43,7 +51,8 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
     // Scenarios
     //todo spinner
     //Scenarios::DamBreakScenario scenario(domain_size);
-    Scenarios::RareRareScenario scenario(10, -10,  domain_size);
+    //Scenarios::RareRareScenario scenario(10, -10, domain_size);
+    auto &scenario = *getScenarioBasedOnName(scenario_name, domain_size);
     //Scenarios::ShockShockScenario scenario(10, 10, domain_size);
     //Scenarios::SubcriticalFlowScenario scenario;
     //Scenarios::SupercriticalFlowScenario scenario;
@@ -51,11 +60,11 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
 
     // Allocate memory
     // Water height
-    auto* h = new RealType[domain_size + 2];
+    auto *h = new RealType[domain_size + 2];
     // Momentum
-    auto* hu = new RealType[domain_size + 2];
+    auto *hu = new RealType[domain_size + 2];
     // Bathymetry
-    auto* b = new RealType[domain_size + 2];
+    auto *b = new RealType[domain_size + 2];
 
 
     //todo option: randomized bathymetry
@@ -69,22 +78,20 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
         // if(i == domain_size){
         //   b[i] = 100;
         // }
-
         //Note: b[i] must be set to a valid number, otherwise it will cause undefined behavior
 
         //comment this out if you want some random bathymetry in the domain       b[i] = createRandomNumber_MAIN(-2, -1);
         b[i] = 0; //no bathymetry at all
 
         //h[i] = scenario.getHeight(i);//for dam break and sub/super
-        h[i] = scenario.getHeight();//for shockshock and rarerare
-
+        h[i] = scenario.getHeight(i);//for shockshock and rarerare
         hu[i] = scenario.getMomentum(i);//applys to all scenarios
     }
 
     std::string absolute_path = "/sdcard/" + dir_name + "/";
 
     // Create a writer that is responsible printing out values
-    Writers::VTKSWE1DWriter     vtkSwe1dWriter(absolute_path + "SWE1D", scenario.getCellSize());
+    Writers::VTKSWE1DWriter vtkSwe1dWriter(absolute_path + "SWE1D", scenario.getCellSize());
 
     // Helper class computing the wave propagation
     Blocks::WavePropagationBlock_1D wavePropagation(h, hu, b, domain_size, scenario.getCellSize());
@@ -107,7 +114,8 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
         // Update unknowns from net updates
         wavePropagation.updateUnknowns(maxTimeStep);
 
-        output<< "Computing iteration " << i << " at time " << t << " with max. timestep " << maxTimeStep << std::endl;
+        output << "Computing iteration " << i << " at time " << t << " with max. timestep "
+               << maxTimeStep << std::endl;
 
         // Update time
         t += maxTimeStep;
@@ -127,7 +135,27 @@ std::string runner_main(int size, int time_step, const std::string& dir_name) {
 }
 
 double createRandomNumber_MAIN(const double min, const double max) {
-    double randomNumber = ((double)rand() / (double)RAND_MAX);
+    double randomNumber = ((double) rand() / (double) RAND_MAX);
     return min + (max - min) * randomNumber;
 }
+
+Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domain_size) {
+    if (name == "DamBreakScenario") {
+        auto *scenario = new Scenarios::DamBreakScenario(domain_size);
+        return scenario;
+    } else if (name == "ShockShockScenario") {
+        auto *scenario = new Scenarios::ShockShockScenario(10, 10, 50);
+        return scenario;
+    } else if (name == "RareRareScenario") {
+        auto *scenario = new Scenarios::RareRareScenario(10, -10, 50);
+        return scenario;
+    } else if (name == "SubcriticalScenario") {
+        auto *scenario = new Scenarios::SubcriticalFlowScenario;
+        return scenario;
+    } else {
+        auto *scenario = new Scenarios::SupercriticalFlowScenario;
+        return scenario;
+    }
+}
+
 

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +30,7 @@ public class SWE extends AppCompatActivity {
     }
 
     public void start(View view) {
-        Spinner ss = (Spinner) findViewById(R.id.dynamic_spinner);
+        Spinner ss = (Spinner) findViewById(R.id.swe_scenario_spinner);
         EditText a = (EditText) findViewById(R.id.swex);
         EditText b = (EditText) findViewById(R.id.swey);
         EditText c = (EditText) findViewById(R.id.checkpoints);
@@ -77,24 +76,20 @@ public class SWE extends AppCompatActivity {
         setContentView(R.layout.activity_swe);
         setTitle("SWE");
 
-        Spinner scenarioSelector = (Spinner) findViewById(R.id.dynamic_spinner);
-
-
+        Spinner scenarioSelector = (Spinner) findViewById(R.id.swe_scenario_spinner);
         String[] items = new String[]{"RadialDamBreakScenario", "ArtificialTsunamiScenario", "BathymetryDamBreakScenario"};
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, items);
 
         scenarioSelector.setSelection(0);
-
         scenarioSelector.setAdapter(adapter);
         scenarioSelector.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(19);
                 Log.v("item", (String) parent.getItemAtPosition(position));
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }

@@ -10,9 +10,9 @@ Scenarios::ShockShockScenario::ShockShockScenario(double h, double hu, unsigned 
 
 RealType Scenarios::ShockShockScenario::getCellSize() const { return RealType(1000) / size_; }
 
-RealType Scenarios::ShockShockScenario::getHeight() {return h_;}
+RealType Scenarios::ShockShockScenario::getHeight([[maybe_unused]] unsigned int pos) const {return h_;}
 
-RealType Scenarios::ShockShockScenario::getMomentum(unsigned int pos){
+RealType Scenarios::ShockShockScenario::getMomentum(unsigned int pos) const{
     if(pos <= size_ / 2){
         return hul_;
     }

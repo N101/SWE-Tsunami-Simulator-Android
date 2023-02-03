@@ -11,12 +11,13 @@ RealType Scenarios::SubcriticalFlowScenario::getBathymetry(unsigned int pos) con
     return -2;
 }
 
+
 RealType Scenarios::SubcriticalFlowScenario::getHeight(unsigned int pos) const {
-    assert(pos > 0 && pos < 25);
+    //assert(pos > 0 && pos < 25);
     return -getBathymetry(pos);
     }
 
 RealType Scenarios::SubcriticalFlowScenario::getMomentum(unsigned int pos) const {
-    assert(pos > 0 && pos < 25);
+    //assert(pos > 0 && pos < 25); //assert causes app crash
     return 4.42;
     }

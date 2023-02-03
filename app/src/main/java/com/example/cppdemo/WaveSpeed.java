@@ -18,7 +18,7 @@ public class WaveSpeed extends AppCompatActivity {
 
     // Used to load the 'funccall' library on application startup.
     static {
-        System.loadLibrary("cppdemo");
+        System.loadLibrary("tsunamiSim");
     }
 
 
@@ -40,7 +40,6 @@ public class WaveSpeed extends AppCompatActivity {
             y = Integer.parseInt(c.getText().toString());
             z = Integer.parseInt(d.getText().toString());
 
-
             text.setText(main(w, x, y, z));
         }
 
@@ -52,11 +51,6 @@ public class WaveSpeed extends AppCompatActivity {
     /// Back button function
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                this.finish();
-//                return true;
-//        }
         this.finish();
         return super.onOptionsItemSelected(item);
     }
@@ -73,6 +67,7 @@ public class WaveSpeed extends AppCompatActivity {
 
         /// Back button
         ActionBar a = getSupportActionBar();
+        assert a != null;
         a.setDisplayHomeAsUpEnabled(true);
 
     }

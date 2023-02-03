@@ -17,7 +17,7 @@ std::string
 runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints,
             const std::string &cond, std::string &baseName, const std::string &dir_name);
 
-Scenarios::Scenario *getScenarioBasedOnName(std::string &name);
+Scenarios::Scenario *getScenarioBasedOnName(const std::string &name);
 
 std::string jstring2string(JNIEnv *env, jstring jStr);
 
@@ -170,11 +170,11 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
 // To avoid object slicing, Scenario is changed to be marked as pure virtual class through making functions "=0",
 // so that correct getWaterHeight etc can be called.
 // Note: new functions are implemented in classes such as ArtificialTsunamiScenario (as a derived class of Scenario)
-Scenarios::Scenario *getScenarioBasedOnName(std::string &name) {
-    if (reinterpret_cast<std::string & >(name) == "RadialDamBreakScenario") {
+Scenarios::Scenario *getScenarioBasedOnName(const std::string &name) {
+    if (name == "RadialDamBreakScenario") {
         auto *scenario = new Scenarios::RadialDamBreakScenario;
         return scenario;
-    } else if (reinterpret_cast<std::string & >(name) == "BathymetryDamBreakScenario") {
+    } else if (name  == "BathymetryDamBreakScenario") {
         auto *scenario = new Scenarios::BathymetryDamBreakScenario;
         return scenario;
     } else {

@@ -111,10 +111,11 @@
         tools:ignore="MissingConstraints">
 
         <Spinner
-            android:id="@+id/dynamic_spinner"
+            android:id="@+id/swe_scenario_spinner"
             android:layout_width="fill_parent"
             android:layout_height="51dp"
-            android:padding="10dp"
+            android:padding="0dp"
+            android:popupBackground="@color/waveBackground"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="64dp" />
 
