@@ -73,8 +73,8 @@ namespace Writers {
       const Tools::Float2D<RealType>& h,
       const Tools::Float2D<RealType>& hu,
       const Tools::Float2D<RealType>& hv,
-      double                          time,
-      const BoundaryType*             boundaryType
+      double                          time//,
+      //const BoundaryType*             boundaryType
     ) override;
 
   };

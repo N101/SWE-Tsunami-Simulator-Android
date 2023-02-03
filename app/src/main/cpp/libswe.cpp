@@ -105,27 +105,27 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     output << "Scenario: " << scenarioName << "\n";
     output << "Domain size: " << x << " x " << y << "\n";
     output << "Time: " << "\n";
-    output << "boundaryCond = " << boundaryCond << "\n\n";
-
-    BoundaryType curr;
-    //! Set boundaryTypes in Block::boundary_
-    for (int i = 0; i < 4; i++) {
-
-        if (boundaryCond.at(0) == 'W') {
-            curr = Wall;
-        } else if (boundaryCond.at(0) == 'O') {
-            curr = Outflow;
-        } else {
-            // default/wrong parameters ==> change to default _Passive_ (block constructor also initializes as passive)
-            curr = Passive;
-        }
-        wave_block->setBoundaryType(BoundaryEdge(i), curr);
-        //boundaryCond = boundaryCond.substr(1);
-    }
+//    output << "boundaryCond = " << boundaryCond << "\n\n";
+//
+//    BoundaryType curr;
+//    //! Set boundaryTypes in Block::boundary_
+//    for (int i = 0; i < 4; i++) {
+//
+//        if (boundaryCond.at(0) == 'W') {
+//            curr = Wall;
+//        } else if (boundaryCond.at(0) == 'O') {
+//            curr = Outflow;
+//        } else {
+//            // default/wrong parameters ==> change to default _Passive_ (block constructor also initializes as passive)
+//            curr = Passive;
+//        }
+//        wave_block->setBoundaryType(BoundaryEdge(i), curr);
+//        //boundaryCond = boundaryCond.substr(1);
+//    }
 
     // Write zero time step
     writer->writeTimeStep(wave_block->getWaterHeight(), wave_block->getDischargeHu(),
-                          wave_block->getDischargeHv(), 0.0, &curr);
+                          wave_block->getDischargeHv(), 0.0);//, &curr);
 
     unsigned int iterations = 0;
     double simulationTime = 0.0;
@@ -155,8 +155,8 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
         // Write output
         writer->writeTimeStep(
                 wave_block->getWaterHeight(), wave_block->getDischargeHu(),
-                wave_block->getDischargeHv(), simulationTime,
-                wave_block->getBoundaryType()
+                wave_block->getDischargeHv(), simulationTime//,
+                //wave_block->getBoundaryType()
         );
     }
 
