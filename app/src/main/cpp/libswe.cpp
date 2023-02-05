@@ -1,13 +1,11 @@
 #include <jni.h>
 #include <string>
-//#include </usr/include/netcdf.h>
 
 #include <iostream>
 #include <fstream>
 #include "Source/Blocks/DimensionalSplitting.hpp"
 #include "Source/Scenarios/RadialDamBreakScenario.hpp"
 #include "Source/Scenarios/BathymetryDamBreakScenario.hpp"
-#include "Source/Scenarios/TsunamiScenario.hpp"
 #include "Source/Scenarios/ArtificialTsunamiScenario.hpp"
 #include "Source/Tools/Args.hpp"
 #include "Source/Writers/Writer.hpp"
