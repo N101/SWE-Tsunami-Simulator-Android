@@ -45,7 +45,7 @@ Scenarios::Scenario::getVelocityV([[maybe_unused]] RealType x, [[maybe_unused]] 
 //  return RealType(0.0);
 //}
 
-RealType Scenarios::Scenario::getBathymetryAfterEarthquake(RealType x, RealType y) const {
+RealType Scenarios::Scenario::getBathymetryBeforeEarthquake(RealType x, RealType y) const {
     return RealType(0.0);
 }
 
@@ -56,16 +56,16 @@ RealType Scenarios::Scenario::getDisplacement(RealType x, RealType y) const {
 
 RealType Scenarios::Scenario::getWaterHeightAtRest() const { return RealType(10.0); }
 
-//double Scenarios::Scenario::getEndSimulationTime() const { return 0.1; }
+double Scenarios::Scenario::getEndSimulationTime() const { return 20; }
 //
-//BoundaryType Scenarios::Scenario::getBoundaryType([[maybe_unused]] BoundaryEdge edge) const {
-//  return BoundaryType::Wall;
-//}
-//
-//RealType Scenarios::Scenario::getBoundaryPos(BoundaryEdge edge) const {
-//  if (edge == BoundaryEdge::Left || edge == BoundaryEdge::Bottom) {
-//    return RealType(0.0);
-//  } else {
-//    return RealType(1.0);
-//  }
-//}
+BoundaryType Scenarios::Scenario::getBoundaryType([[maybe_unused]] BoundaryEdge edge) const {
+  return BoundaryType::Wall;
+}
+
+RealType Scenarios::Scenario::getBoundaryPos(BoundaryEdge edge) const {
+  if (edge == BoundaryEdge::Left || edge == BoundaryEdge::Bottom) {
+    return RealType(0.0);
+  } else {
+    return RealType(1.0);
+  }
+}

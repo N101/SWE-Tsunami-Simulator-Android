@@ -15,14 +15,9 @@ namespace Scenarios {
 
         RealType getDisplacement(RealType x, RealType y) const override;
 
-        RealType getBathymetryAfterEarthquake(RealType x, RealType y) const override;
-
-        BoundaryType getBoundaryType(BoundaryEdge edge) const override;
+        RealType getBathymetryBeforeEarthquake(RealType x, RealType y) const override;
 
         RealType getBoundaryPos(BoundaryEdge edge) const override;
-
-        double getEndSimulationTime() const override;
-
     };
 
 } // namespace Scenarios

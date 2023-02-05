@@ -104,9 +104,11 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     // Write basic info
     output << "Scenario: " << scenarioName << "\n";
     output << "Domain size: " << x << " x " << y << "\n";
-    output << "Time: " << "\n";
-//    output << "boundaryCond = " << boundaryCond << "\n\n";
-//
+    output << "Time: "  << scenario.getEndSimulationTime() << "\n";
+    output << "===========================" << "\n";
+
+    //    output << "boundaryCond = " << boundaryCond << "\n\n";
+
 //    BoundaryType curr;
 //    //! Set boundaryTypes in Block::boundary_
 //    for (int i = 0; i < 4; i++) {
@@ -130,11 +132,15 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     unsigned int iterations = 0;
     double simulationTime = 0.0;
 
+    // int cp = 1;
     // Loop over checkpoints
     for (int cp = 1; cp <= numberOfCheckPoints; cp++) {
+    //for (; simulationTime < endSimulationTime;) {
         // Do time steps until next checkpoint is reached
-        while (simulationTime < checkPoints[cp]) {
-            output << "running simulation at time " << simulationTime << std::endl;
+    // while (simulationTime < endTime) {
+
+       while (simulationTime < checkPoints[cp]) {
+            output << "Running simulation at time " << simulationTime << std::endl;
             // Set values in ghost cells
             wave_block->setGhostLayer();
 
@@ -159,7 +165,6 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
                 //wave_block->getBoundaryType()
         );
     }
-
 
     std::ofstream output_text(absolute_path + "output.txt");
     output_text << output.str();
@@ -209,5 +214,3 @@ std::string jstring2string(JNIEnv *env, jstring jStr) {
     env->DeleteLocalRef(stringClass);
     return ret;
 }
-
-

@@ -57,7 +57,7 @@ namespace Scenarios {
        * @param y the y coordinate
        * @return bathymetry after the earthquake
        * */
-    RealType getBathymetryAfterEarthquake(RealType x, RealType y) const override;
+    //RealType getBathymetryAfterEarthquake(RealType x, RealType y) const override;
 
       /**
         * @return how long the simulation is supposed to run for
