@@ -16,7 +16,6 @@
         android:ems="10"
         android:hint="Domain size"
         android:inputType="numberDecimal"
-        android:text="50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -30,17 +29,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:layout_marginBottom="381dp"
+        android:autofillHints="50"
         android:ems="10"
         android:hint="Simulation time"
         android:inputType="numberDecimal"
-        android:text="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swe1size"
-        app:layout_constraintVertical_bias="0.0"
-        android:autofillHints="50" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <Button
@@ -89,16 +87,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
+        android:autofillHints="swe1d_dir"
         android:ems="10"
-        android:hint="Enter the base name"
+        android:hint="Enter the name of the directory"
         android:inputType="textPersonName"
-        android:text="SWE1D_directory"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swe1dtime"
-        app:layout_constraintVertical_bias="0.006"
-        android:autofillHints="swe1d_dir" />
+        app:layout_constraintVertical_bias="0.006" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
