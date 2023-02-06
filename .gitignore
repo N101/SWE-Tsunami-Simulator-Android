@@ -5,3 +5,5 @@ Debug
 debug
 .cxx
 local.properties
+docs
+Doxyfile
