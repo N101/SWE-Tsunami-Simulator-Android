@@ -60,8 +60,7 @@ void Writers::VTKSWEWriter::writeTimeStep(
         const Tools::Float2D<RealType>& h,
         const Tools::Float2D<RealType>& hu,
         const Tools::Float2D<RealType>& hv,
-        double                          time//,
-        //const BoundaryType* boundaryType
+        double                          time
 ){
     std::ofstream vtkFile(generateFileName().c_str());
 

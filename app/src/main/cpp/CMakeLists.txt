@@ -7,22 +7,7 @@ cmake_minimum_required(VERSION 3.18.1)
 
 
 # Declares and names the project.
-
-
 project("tsunamiSimMobile")
-
-#message(${CMAKE_CURRENT_LIST_DIR})
-##find_library(NETCDF
-##        NAMES libnetcdf.so netcdf_c++
-##        NO_CACHE
-##        REQUIRED
-##        PATHS ${CMAKE_CURRENT_LIST_DIR}/libs)
-#
-#add_library(libnetcdf SHARED IMPORTED GLOBAL)
-
-
-#option(ENABLE_NETCDF "Enable output writing with NetCDF." ON)
-#add_compile_definitions(ENABLE_NETCDF)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -40,7 +25,6 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        # /home/liuqichen/apks/javavtk-debug-lib/lib/armeabi-v7a/libJavaVTK.so
         libwavespeed.cpp
         libswe.cpp
         libswe1d.cpp
@@ -67,9 +51,6 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
         tsunamiSim
-
-#        /usr/lib64/libnetcdf.so
-#        /usr/lib64/libnetcdf_c++.so
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

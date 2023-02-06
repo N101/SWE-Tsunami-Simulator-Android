@@ -41,7 +41,6 @@ int& Writers::BoundarySize::operator[](unsigned int i) { return boundarySize[i];
 int Writers::BoundarySize::operator[](unsigned int i) const { return boundarySize[i]; }
 
 std::shared_ptr<Writers::Writer> Writers::Writer::createWriterInstance(
-        //filename: /sdcard/SWE_00
         [[maybe_unused]] const std::string&              fileName,
         [[maybe_unused]] const Tools::Float2D<RealType>& bathymetry,
         [[maybe_unused]] const BoundarySize&             boundarySize,
@@ -61,7 +60,6 @@ std::shared_ptr<Writers::Writer> Writers::Writer::createWriterInstance(
 }
 
 Writers::Writer::Writer(
-        //filename: /sdcard/SWE_00
         const std::string&              fileName,
         const Tools::Float2D<RealType>& bathymetry,
         const BoundarySize&             boundarySize,
