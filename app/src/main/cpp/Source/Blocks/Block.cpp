@@ -130,9 +130,8 @@ void Blocks::Block::initialiseScenario(
   // Initialize bathymetry
   for (int i = 0; i <= nx_ + 1; i++) {
     for (int j = 0; j <= ny_ + 1; j++) {
-       b_[i][j] = scenario.getBathymetry(i, j);
-      //b_[i][j] = scenario.getBathymetryAfterEarthquake(i * dx_, j * dy_);
-      //b_[i][j] = scenario.getBathymetry(offsetX + (i - RealType(0.5)) * dx_, offsetY + (j - RealType(0.5f)) * dy_);
+      b_[i][j] = scenario.getBathymetry(i * dx_, j * dy_);
+      //b_[i][j] = scenario.getBathymetry(offsetX + (i - RealType(0.5)) * dx_, offsetY + (j - RealType(0.5f)) * dy_);// for bathymetryradialdam
     }
   }
 

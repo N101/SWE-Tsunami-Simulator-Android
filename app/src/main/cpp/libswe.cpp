@@ -1,20 +1,18 @@
 #include <jni.h>
 #include <string>
-//#include </usr/include/netcdf.h>
 
 #include <iostream>
 #include <fstream>
 #include "Source/Blocks/DimensionalSplitting.hpp"
 #include "Source/Scenarios/RadialDamBreakScenario.hpp"
 #include "Source/Scenarios/BathymetryDamBreakScenario.hpp"
-#include "Source/Scenarios/TsunamiScenario.hpp"
 #include "Source/Scenarios/ArtificialTsunamiScenario.hpp"
 #include "Source/Tools/Args.hpp"
 #include "Source/Writers/Writer.hpp"
 #include "Source/BoundaryEdge.hpp"
 
 std::string
-runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints,
+runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints, int end_time,
             const std::string &cond, std::string &baseName, const std::string &dir_name);
 
 Scenarios::Scenario *getScenarioBasedOnName(const std::string &name);
@@ -24,7 +22,8 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
-                                  jint cp, jstring cond, jstring baseName, jstring dir) {
+                                  jint checkpoints, jint end_time, jstring cond, jstring baseName,
+                                  jstring dir) {
     std::string sname = jstring2string(env, scenarioName);
     std::string name = jstring2string(env, baseName);
     std::string dir_name = jstring2string(env, dir);
@@ -35,7 +34,8 @@ Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioNam
                     sname,
                     x,
                     y,
-                    cp,
+                    checkpoints,
+                    end_time,
                     bcond,
                     name,
                     dir_name).c_str());
@@ -48,7 +48,7 @@ Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioNam
  * */
 
 
-std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints,
+std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints, int end_time,
                         const std::string &boundaryCond, std::string &baseName,
                         const std::string &dir_name) {
 
@@ -70,19 +70,18 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     auto wave_block = Blocks::Block::getBlockInstance(numberOfGridCellsX, numberOfGridCellsY,
                                                       cellSize_x, cellSize_y);
     wave_block->initialiseScenario(0, 0, scenario, false);
-    // Get the final simulation time from the scenario
-    double endSimulationTime = scenario.getEndSimulationTime();
 
     auto *checkPoints = new double[numberOfCheckPoints + 1];
 
     // Compute the checkpoints in time
     for (int cp = 0; cp <= numberOfCheckPoints; cp++) {
-        checkPoints[cp] = cp * (endSimulationTime / numberOfCheckPoints);
+        checkPoints[cp] = cp * ((double) end_time / numberOfCheckPoints);
     }
 
     // Boundary size of the ghost layers
     Writers::BoundarySize boundarySize = {{1, 1, 1, 1}};
 
+    // path to write output files
     std::string absolute_path = "/sdcard/" + dir_name + "/";
     std::string fileName = Writers::generateBaseFileName(baseName, absolute_path, 0, 0);
 
@@ -101,12 +100,18 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0
     );
 
+    auto start = std::chrono::system_clock::now();
+    std::time_t start_t = std::chrono::system_clock::to_time_t(start);
     // Write basic info
+    output << std::ctime(&start_t) << "\n";
     output << "Scenario: " << scenarioName << "\n";
     output << "Domain size: " << x << " x " << y << "\n";
-    output << "Time: " << "\n";
-//    output << "boundaryCond = " << boundaryCond << "\n\n";
-//
+    output << "checkpoints: " << numberOfCheckPoints << "\n";
+    output << "Time: " << scenario.getEndSimulationTime() << "\n";
+    output << "===========================" << "\n";
+
+    //    output << "boundaryCond = " << boundaryCond << "\n\n";
+
 //    BoundaryType curr;
 //    //! Set boundaryTypes in Block::boundary_
 //    for (int i = 0; i < 4; i++) {
@@ -130,11 +135,12 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     unsigned int iterations = 0;
     double simulationTime = 0.0;
 
+    // int cp = 1;
     // Loop over checkpoints
     for (int cp = 1; cp <= numberOfCheckPoints; cp++) {
         // Do time steps until next checkpoint is reached
         while (simulationTime < checkPoints[cp]) {
-            output << "running simulation at time " << simulationTime << std::endl;
+            output << "Running simulation at time " << simulationTime << std::endl;
             // Set values in ghost cells
             wave_block->setGhostLayer();
 
@@ -151,7 +157,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             iterations++;
         }
 
-        //output << "new checkpoint after " << iterations << " iterations\n";
+        output << "NEW CHECKPOINT AFTER " << iterations << " ITERATIONS\n";
         // Write output
         writer->writeTimeStep(
                 wave_block->getWaterHeight(), wave_block->getDischargeHu(),
@@ -159,7 +165,6 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
                 //wave_block->getBoundaryType()
         );
     }
-
 
     std::ofstream output_text(absolute_path + "output.txt");
     output_text << output.str();
@@ -179,7 +184,7 @@ Scenarios::Scenario *getScenarioBasedOnName(const std::string &name) {
     if (name == "RadialDamBreakScenario") {
         auto *scenario = new Scenarios::RadialDamBreakScenario;
         return scenario;
-    } else if (name  == "BathymetryDamBreakScenario") {
+    } else if (name == "BathymetryDamBreakScenario") {
         auto *scenario = new Scenarios::BathymetryDamBreakScenario;
         return scenario;
     } else {
@@ -209,5 +214,3 @@ std::string jstring2string(JNIEnv *env, jstring jStr) {
     env->DeleteLocalRef(stringClass);
     return ret;
 }
-
-

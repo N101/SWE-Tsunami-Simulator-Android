@@ -53,11 +53,11 @@ namespace Scenarios {
     virtual RealType getBathymetry(RealType x, RealType y) const = 0;
 
     virtual RealType getWaterHeightAtRest() const;
-    virtual double   getEndSimulationTime() const = 0;
+    virtual double   getEndSimulationTime() const;
 
-    virtual BoundaryType getBoundaryType(BoundaryEdge edge) const = 0;
-    virtual RealType     getBoundaryPos(BoundaryEdge edge) const = 0;
-    virtual RealType getBathymetryAfterEarthquake(RealType x, RealType y) const;
+    virtual BoundaryType getBoundaryType(BoundaryEdge edge) const;
+    virtual RealType     getBoundaryPos(BoundaryEdge edge) const;
+    virtual RealType getBathymetryBeforeEarthquake(RealType x, RealType y) const;
     virtual RealType getDisplacement(RealType x, RealType y) const;
   };
 

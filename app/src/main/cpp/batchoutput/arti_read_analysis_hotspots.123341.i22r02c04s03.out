@@ -1,69 +1,0 @@
-vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/r000hs -command stop.
-vtune: Collection stopped.
-vtune: Using result path `/dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/r000hs'
-vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions  0 % Finalizing the result                            vtune: Executing actions  0 % Clearing the database                            vtune: Executing actions  7 % Clearing the database                            vtune: Executing actions  7 % Loading raw data to the database                 vtune: Executing actions  7 % Loading 'systemcollector-6382-i22r02c04s03.sc' fivtune: Executing actions 12 % Loading 'systemcollector-6382-i22r02c04s03.sc' fivtune: Executing actions 12 % Loading '6393.stat.perf' file                    vtune: Executing actions 12 % Loading '6382-6393.0.trace' file                 vtune: Executing actions 12 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Updating precomputed scalar metrics              vtune: Executing actions 14 % Processing profile metrics and debug information vtune: Executing actions 19 % Processing profile metrics and debug information vtune: Executing actions 19 % Setting data model parameters                    vtune: Executing actions 19 % Resolving module symbols                         vtune: Executing actions 19 % Resolving information for `libnetcdf.so.18'      vtune: Executing actions 19 % Resolving information for `SWE-TEST-Runner'      vtune: Executing actions 19 % Resolving information for `libc.so.6'            vtune: Executing actions 19 % Resolving information for `libnetcdf_c++.so.4'   
-vtune: Warning: Cannot locate debugging information for file `/lib64/libc.so.6'.
-vtune: Executing actions 19 % Resolving information for `libtpsstool.so'       vtune: Executing actions 20 % Resolving information for `libtpsstool.so'       vtune: Executing actions 20 % Resolving information for `libstdc++.so.6'       
-vtune: Warning: Cannot locate debugging information for file `/dss/dsshome1/lrz/sys/spack/.oneapi/opt/x86_64/intel-oneapi-vtune/2021.7.1-gcc-ihh6yuf/vtune/2021.7.1/lib64/libtpsstool.so'.
-vtune: Executing actions 21 % Resolving information for `libstdc++.so.6'       vtune: Executing actions 22 % Resolving information for `libstdc++.so.6'       vtune: Executing actions 22 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving bottom user stack information          vtune: Executing actions 23 % Resolving thread name information                vtune: Executing actions 24 % Resolving thread name information                vtune: Executing actions 24 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving call target names for dynamic code     vtune: Executing actions 25 % Resolving interrupt name information             vtune: Executing actions 26 % Resolving interrupt name information             vtune: Executing actions 26 % Processing profile metrics and debug information vtune: Executing actions 28 % Processing profile metrics and debug information vtune: Executing actions 29 % Processing profile metrics and debug information vtune: Executing actions 30 % Processing profile metrics and debug information vtune: Executing actions 30 % Setting data model parameters                    vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 30 % Precomputing frequently used data                vtune: Executing actions 31 % Precomputing frequently used data                vtune: Executing actions 33 % Precomputing frequently used data                vtune: Executing actions 34 % Precomputing frequently used data                vtune: Executing actions 36 % Precomputing frequently used data                vtune: Executing actions 36 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Updating precomputed scalar metrics              vtune: Executing actions 37 % Discarding redundant overtime data               vtune: Executing actions 39 % Discarding redundant overtime data               vtune: Executing actions 39 % Saving the result                                vtune: Executing actions 41 % Saving the result                                vtune: Executing actions 42 % Saving the result                                vtune: Executing actions 50 % Saving the result                                vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 1.758s
-    CPU Time: 0.540s
-        Effective Time: 0.540s
-            Idle: 0.100s
-            Poor: 0.440s
-            Ok: 0s
-            Ideal: 0s
-            Over: 0s
-        Spin Time: 0s
-        Overhead Time: 0s
-    Total Thread Count: 1
-    Paused Time: 0s
-
-Top Hotspots
-Function                                   Module           CPU Time
------------------------------------------  ---------------  --------
-swapn4b                                    libnetcdf.so.18    0.408s
-read                                       libc.so.6          0.080s
-__memmove_avx_unaligned_erms               libc.so.6          0.032s
-Tools::Float2D<double>::Float2D            SWE-TEST-Runner    0.012s
-Scenarios::TsunamiScenario::getBathymetry  SWE-TEST-Runner    0.008s
-Effective Physical Core Utilization: 2.1% (0.579 out of 28)
- | The metric value is low, which may signal a poor physical CPU cores
- | utilization caused by:
- |     - load imbalance
- |     - threading runtime overhead
- |     - contended synchronization
- |     - thread/process underutilization
- |     - incorrect affinity that utilizes logical cores instead of physical
- |       cores
- | Explore sub-metrics to estimate the efficiency of MPI and OpenMP parallelism
- | or run the Locks and Waits analysis to identify parallel bottlenecks for
- | other parallel runtimes.
- |
-    Effective Logical Core Utilization: 1.0% (0.579 out of 56)
-     | The metric value is low, which may signal a poor logical CPU cores
-     | utilization. Consider improving physical core utilization as the first
-     | step and then look at opportunities to utilize logical cores, which in
-     | some cases can improve processor throughput and overall performance of
-     | multi-threaded applications.
-     |
-Collection and Platform Info
-    Application Command Line: /dss/dsshome1/lxc0E/t1221af/swe1d/SWE/buildgcc/SWE-TEST-Runner 
-    Operating System: 4.12.14-197.40-default NAME="SLES" VERSION="15-SP1" VERSION_ID="15.1" PRETTY_NAME="SUSE Linux Enterprise Server 15 SP1" ID="sles" ID_LIKE="suse" ANSI_COLOR="0;32" CPE_NAME="cpe:/o:suse:sles:15:sp1"
-    Computer Name: i22r02c04s03
-    Result Size: 3.6 MB 
-    Collection start time: 19:57:50 19/12/2022 UTC
-    Collection stop time: 19:57:52 19/12/2022 UTC
-    Collector Type: Driverless Perf per-process counting,User-mode sampling and tracing
-    CPU
-        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
-        Frequency: 2.600 GHz 
-        Logical CPU Count: 56
-        Cache Allocation Technology
-            Level 2 capability: not detected
-            Level 3 capability: not detected
-
-If you want to skip descriptions of detected performance issues in the report,
-enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
-Alternatively, you may view the report in the csv format: vtune -report
-<report_name> -format=csv.
-vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            
