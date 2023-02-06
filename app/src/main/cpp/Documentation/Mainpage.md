@@ -70,5 +70,3 @@ The two terms involving <i>g</i> model a gravity-induced force
 which results from the hydrostatic pressure.
 The right-hand-side source terms model the effect of an uneven ocean floor
 (<i>b</i> obtained from respective bathymetry data).
-
-*/

@@ -7,7 +7,7 @@
 #include "Source/Scenarios/RadialDamBreakScenario.hpp"
 #include "Source/Scenarios/BathymetryDamBreakScenario.hpp"
 #include "Source/Scenarios/ArtificialTsunamiScenario.hpp"
-#include "Source/Tools/Args.hpp"
+#include <sstream>
 #include "Source/Writers/Writer.hpp"
 #include "Source/BoundaryEdge.hpp"
 
