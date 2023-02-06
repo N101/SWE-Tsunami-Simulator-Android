@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tsunamiSimMobile</string>
+    <string name="app_name">TsunamiSim</string>
     <string name="enter_base_name">Enter base name</string>
     <string name="enter_the_y_coordinate">Enter the y coordinate</string>
     <string name="enter_the_x_coordinate">Enter the x coordinate</string>
