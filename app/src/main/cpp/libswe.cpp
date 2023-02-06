@@ -13,7 +13,7 @@
 
 std::string
 runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints, int end_time,
-            const std::string &cond, std::string &baseName, const std::string &dir_name);
+            std::string &baseName, const std::string &dir_name);
 
 Scenarios::Scenario *getScenarioBasedOnName(const std::string &name);
 std::string jstring2string(JNIEnv *env, jstring jStr);
@@ -25,12 +25,11 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
-                                  jint checkpoints, jint end_time, jstring cond, jstring baseName,
+                                  jint checkpoints, jint end_time, jstring baseName,
                                   jstring dir) {
     std::string sname = jstring2string(env, scenarioName);
     std::string name = jstring2string(env, baseName);
     std::string dir_name = jstring2string(env, dir);
-    std::string bcond = jstring2string(env, cond);
 
     return env->NewStringUTF(
             runner_main(
@@ -39,7 +38,6 @@ Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName
                     y,
                     checkpoints,
                     end_time,
-                    bcond,
                     name,
                     dir_name).c_str());
 }
@@ -51,8 +49,7 @@ Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName
  * The functions that runs the simulation.
  * The name indicates that it used to be the main function in the original SWE C++ code.
  * */
-std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints, int end_time,
-                        const std::string &boundaryCond, std::string &baseName,
+std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints, int end_time, std::string &baseName,
                         const std::string &dir_name) {
 
     std::stringstream output;
@@ -113,27 +110,9 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     output << "Time: " << scenario.getEndSimulationTime() << "\n";
     output << "===========================" << "\n";
 
-    //    output << "boundaryCond = " << boundaryCond << "\n\n";
-
-//    BoundaryType curr;
-//    //! Set boundaryTypes in Block::boundary_
-//    for (int i = 0; i < 4; i++) {
-//
-//        if (boundaryCond.at(0) == 'W') {
-//            curr = Wall;
-//        } else if (boundaryCond.at(0) == 'O') {
-//            curr = Outflow;
-//        } else {
-//            // default/wrong parameters ==> change to default _Passive_ (block constructor also initializes as passive)
-//            curr = Passive;
-//        }
-//        wave_block->setBoundaryType(BoundaryEdge(i), curr);
-//        //boundaryCond = boundaryCond.substr(1);
-//    }
-
     // Write zero time step
     writer->writeTimeStep(wave_block->getWaterHeight(), wave_block->getDischargeHu(),
-                          wave_block->getDischargeHv(), 0.0);//, &curr);
+                          wave_block->getDischargeHv(), 0.0);
 
     unsigned int iterations = 0;
     double simulationTime = 0.0;
@@ -164,8 +143,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
         // Write output
         writer->writeTimeStep(
                 wave_block->getWaterHeight(), wave_block->getDischargeHu(),
-                wave_block->getDischargeHv(), simulationTime//,
-                //wave_block->getBoundaryType()
+                wave_block->getDischargeHv(), simulationTime
         );
     }
 
