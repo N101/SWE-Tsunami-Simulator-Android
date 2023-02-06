@@ -1,4 +1,4 @@
-package com.example.cppdemo;
+package com.tsunamisim.swe;
 
 import org.junit.Test;
 

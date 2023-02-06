@@ -21,7 +21,7 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
+Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
                                   jint checkpoints, jint end_time, jstring cond, jstring baseName,
                                   jstring dir) {
     std::string sname = jstring2string(env, scenarioName);

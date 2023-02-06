@@ -1,4 +1,4 @@
-package com.example.cppdemo;
+package com.tsunamisim.swe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tsunamisim.swe.R;
 
 import java.io.File;
 

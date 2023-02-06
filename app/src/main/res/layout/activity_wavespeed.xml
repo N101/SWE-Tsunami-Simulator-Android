@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/waveBackground"
-    tools:context=".WaveSpeed">
+    tools:context="com.tsunamisim.swe.WaveSpeed">
 
     <EditText
         android:id="@+id/e1"
@@ -63,13 +63,15 @@
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="81dp"
         android:layout_marginBottom="251dp"
         android:onClick="start"
         android:text="Get wave speeds"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/e4" />
 
     <TextView
         android:id="@+id/textView"

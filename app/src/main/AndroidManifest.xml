@@ -23,35 +23,35 @@
         android:theme="@style/Theme.CppDemo"
         tools:targetApi="31">
         <activity
-            android:name=".SWEOutput"
+            android:name="com.tsunamisim.swe.SWEOutput"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SWE1DOutput"
+            android:name="com.tsunamisim.swe.SWE1DOutput"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SWE"
+            android:name="com.tsunamisim.swe.SWE"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SWE1D"
+            android:name="com.tsunamisim.swe.SWE1D"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomeScreen"
+            android:name="com.tsunamisim.swe.HomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,7 +64,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".WaveSpeed"
+            android:name="com.tsunamisim.swe.WaveSpeed"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

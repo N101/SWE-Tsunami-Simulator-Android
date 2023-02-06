@@ -7,11 +7,11 @@ android {
         release {
         }
     }
-    namespace 'com.example.cppdemo'
+    namespace 'com.tsunamisim.swe'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.cppdemo"
+        applicationId "com.tsunamisim.swe"
         minSdk 21
         //noinspection ExpiredTargetSdkVersion
         targetSdk 33

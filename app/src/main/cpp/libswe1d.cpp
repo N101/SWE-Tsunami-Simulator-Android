@@ -27,7 +27,7 @@ Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domai
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_example_cppdemo_SWE1D_main(JNIEnv *env, jobject thiz, jstring scenario, jint size,
+Java_com_tsunamisim_swe_SWE1D_main(JNIEnv *env, jobject thiz, jstring scenario, jint size,
                                     jint time_step, jstring dir) {
     std::string dir_name = jstring2string(env, dir);
     std::string scenario_name = jstring2string(env, scenario);

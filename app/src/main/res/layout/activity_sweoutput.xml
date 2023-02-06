@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/waveBackground"
     android:layout_gravity="center"
-    tools:context=".SWEOutput">
+    tools:context="com.tsunamisim.swe.SWEOutput">
 
     <ScrollView
         android:layout_width="275dp"

@@ -58,7 +58,7 @@ void inverseAndJumpMultiplication(double inverse[2][2], double jump[2][1], doubl
 extern "C"
 JNIEXPORT jstring
 
-JNICALL Java_com_example_cppdemo_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a, jint b, jint c,
+JNICALL Java_com_tsunamisim_swe_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a, jint b, jint c,
                                                 jint d) {
     double ql[2]{0, 0}, qr[2]{0, 0};
     double ul{0}, ur{0}, hRoe{0}, hl{0}, hr{0}, uRoe{0};

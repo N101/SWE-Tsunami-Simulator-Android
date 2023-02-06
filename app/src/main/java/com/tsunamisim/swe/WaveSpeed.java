@@ -1,4 +1,4 @@
-package com.example.cppdemo;
+package com.tsunamisim.swe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -11,16 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cppdemo.databinding.ActivityMainBinding;
-//import com.example.funccall.databinding.ActivityMainBinding;
+import com.tsunamisim.swe.databinding.ActivityWavespeedBinding;
 
 public class WaveSpeed extends AppCompatActivity {
-
-    // Used to load the 'funccall' library on application startup.
     static {
         System.loadLibrary("tsunamiSim");
     }
-
 
     public void start(View view) {
         EditText a = (EditText) findViewById(R.id.e1);
@@ -45,10 +41,7 @@ public class WaveSpeed extends AppCompatActivity {
 
 
     }
-
-    private ActivityMainBinding binding;
-
-    /// Back button function
+     /// Back button function
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         this.finish();
@@ -62,7 +55,7 @@ public class WaveSpeed extends AppCompatActivity {
         /// Screen title
         setTitle("Compute Wave Speeds");
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.tsunamisim.swe.databinding.ActivityWavespeedBinding binding = ActivityWavespeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         /// Back button
