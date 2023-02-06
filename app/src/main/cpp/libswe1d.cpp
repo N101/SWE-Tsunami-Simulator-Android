@@ -58,9 +58,15 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     // Bathymetry
     auto *b = new RealType[domain_size + 2];
 
-    output << "Scenario: " + scenario_name << "\n\n";
+
+    auto start = std::chrono::system_clock::now();
+    std::time_t start_t = std::chrono::system_clock::to_time_t(start);
+    // Write basic info
+    output << std::ctime(&start_t) << "\n\n";
+    output << "Scenario: " + scenario_name << "\n";
     output << "Domain size: " << domain_size << "\n";
-    output << "Time: " << time_step << "\n\n";
+    output << "Time: " << time_step << "\n";
+    output << "===============================" << "\n";
 
     // Initialize scenario & write basic info
     for (unsigned int i = 0; i < domain_size + 2; i++) {
