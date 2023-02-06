@@ -36,13 +36,14 @@ public class SWE extends AppCompatActivity {
         EditText c = (EditText) findViewById(R.id.checkpoints);
         EditText d = (EditText) findViewById(R.id.cond);
         EditText e = (EditText) findViewById(R.id.basename_input);
+        EditText time = findViewById(R.id.endTime);
         String dirName = ((EditText) findViewById(R.id.swe_dirname)).getText().toString();
 
         File swe_dir = new File(Environment.getExternalStorageDirectory() + "/" + dirName);
         swe_dir.mkdirs();
 
         String scenarioName = ss.getSelectedItem().toString();
-        int x, y, cp;
+        int x, y, cp, t;
         String cond, baseName;
 
         if (a.getText().toString().isEmpty() || b.getText().toString().isEmpty() || c.getText().toString().isEmpty() || d.getText().toString().isEmpty()) {
@@ -53,8 +54,9 @@ public class SWE extends AppCompatActivity {
             cp = Integer.parseInt(c.getText().toString());
             cond = d.getText().toString();
             baseName = e.getText().toString();
+            t = Integer.parseInt(time.getText().toString());
 
-            outPut = main(scenarioName, x, y, cp, cond, baseName, dirName);
+            outPut = main(scenarioName, x, y, cp, t,  cond, baseName, dirName);
 
             Intent intent = new Intent(view.getContext(), SWEOutput.class);
             intent.putExtra("swe", outPut);
@@ -103,6 +105,6 @@ public class SWE extends AppCompatActivity {
 
     }
 
-    public native String main(String scenarioName, int x, int y, int cp, String cond, String baseName, String dirName);
+    public native String main(String scenarioName, int x, int y, int cp, int end_time, String cond, String baseName, String dirName);
 
 }

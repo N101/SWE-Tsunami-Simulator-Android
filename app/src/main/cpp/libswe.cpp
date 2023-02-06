@@ -12,7 +12,7 @@
 #include "Source/BoundaryEdge.hpp"
 
 std::string
-runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints,
+runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoints, int end_time,
             const std::string &cond, std::string &baseName, const std::string &dir_name);
 
 Scenarios::Scenario *getScenarioBasedOnName(const std::string &name);
@@ -22,7 +22,7 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
-                                  jint cp, jstring cond, jstring baseName, jstring dir) {
+                                  jint checkpoints, jint end_time, jstring cond, jstring baseName, jstring dir) {
     std::string sname = jstring2string(env, scenarioName);
     std::string name = jstring2string(env, baseName);
     std::string dir_name = jstring2string(env, dir);
@@ -33,7 +33,8 @@ Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioNam
                     sname,
                     x,
                     y,
-                    cp,
+                    checkpoints,
+                    end_time,
                     bcond,
                     name,
                     dir_name).c_str());
@@ -46,7 +47,7 @@ Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioNam
  * */
 
 
-std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints,
+std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints, int end_time,
                         const std::string &boundaryCond, std::string &baseName,
                         const std::string &dir_name) {
 
@@ -69,8 +70,8 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
                                                       cellSize_x, cellSize_y);
     wave_block->initialiseScenario(0, 0, scenario, false);
     // Get the final simulation time from the scenario
-    double endSimulationTime = scenario.getEndSimulationTime();
-
+    //double endSimulationTime = scenario.getEndSimulationTime();
+    double endSimulationTime = end_time;
     auto *checkPoints = new double[numberOfCheckPoints + 1];
 
     // Compute the checkpoints in time
