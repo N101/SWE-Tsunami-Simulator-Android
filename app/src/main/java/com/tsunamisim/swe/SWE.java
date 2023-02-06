@@ -35,8 +35,8 @@ public class SWE extends AppCompatActivity {
         EditText a = findViewById(R.id.swex);
         EditText b = findViewById(R.id.swey);
         EditText c = findViewById(R.id.checkpoints);
-        EditText d = findViewById(R.id.cond);
-        EditText e = findViewById(R.id.basename_input);
+//        EditText d = findViewById(R.id.cond);
+        EditText d = findViewById(R.id.basename_input);
         EditText time = findViewById(R.id.endTime);
         String dirName = ((EditText) findViewById(R.id.swe_dirname)).getText().toString();
 
@@ -47,17 +47,17 @@ public class SWE extends AppCompatActivity {
         int x, y, cp, t;
         String cond, baseName;
 
-        if (a.getText().toString().isEmpty() || b.getText().toString().isEmpty() || c.getText().toString().isEmpty() || d.getText().toString().isEmpty() || e.getText().toString().isEmpty() || time.getText().toString().isEmpty()) {
+        if (a.getText().toString().isEmpty() || b.getText().toString().isEmpty() || c.getText().toString().isEmpty() || d.getText().toString().isEmpty() || time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please fill out all fields correctly!", Toast.LENGTH_SHORT).show();
         } else {
             x = Integer.parseInt(a.getText().toString());
             y = Integer.parseInt(b.getText().toString());
             cp = Integer.parseInt(c.getText().toString());
-            cond = d.getText().toString();
-            baseName = e.getText().toString();
+//            cond = d.getText().toString();
+            baseName = d.getText().toString();
             t = Integer.parseInt(time.getText().toString());
 
-            String outPut = main(scenarioName, x, y, cp, t, cond, baseName, dirName);
+            String outPut = main(scenarioName, x, y, cp, t, baseName, dirName);
             if(!dirCreated){
                 outPut += "\nDirectory is not created! Please check to permission to the app!";
             }
@@ -116,6 +116,6 @@ public class SWE extends AppCompatActivity {
      * A native method that is implemented by the 'tsunamiSim' native library,
      * which is packaged with this application.
      */
-    public native String main(String scenarioName, int x, int y, int cp, int end_time, String cond, String baseName, String dirName);
+    public native String main(String scenarioName, int x, int y, int cp, int end_time, String baseName, String dirName);
 
 }
