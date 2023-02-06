@@ -27,7 +27,8 @@ public class SWE extends AppCompatActivity {
     static {
         System.loadLibrary("tsunamiSim");
     }
-
+    /** Function for the "Start" button
+     * Launches the cpp code used to compute the SWE*/
     public void start(View view) {
 
         Spinner ss = findViewById(R.id.swe_scenario_spinner);
@@ -67,13 +68,17 @@ public class SWE extends AppCompatActivity {
 
     }
 
-    /// Back button function
+    /** It is a function needed to be implemented to have the back button in
+     * the upper left corner*/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         this.finish();
         return super.onOptionsItemSelected(item);
     }
 
+    /**Automatically generated function
+     * It runs tasks that are written in it whenever the current View (a.k.a. the current screen)
+     * is loaded*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +111,11 @@ public class SWE extends AppCompatActivity {
 
     }
 
+
+    /**
+     * A native method that is implemented by the 'tsunamiSim' native library,
+     * which is packaged with this application.
+     */
     public native String main(String scenarioName, int x, int y, int cp, int end_time, String cond, String baseName, String dirName);
 
 }

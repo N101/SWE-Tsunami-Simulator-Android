@@ -27,6 +27,8 @@ public class SWE1D extends AppCompatActivity {
         System.loadLibrary("tsunamiSim");
     }
 
+    /** Function for the "Start" button
+     * Launches the cpp code used to compute the SWE1D*/
     public void start(View view) {
         Spinner ss = findViewById(R.id.swe1d_scenario_spinner);
         EditText a = findViewById(R.id.swe1size);
@@ -50,13 +52,16 @@ public class SWE1D extends AppCompatActivity {
         }
 
     }
-    /// Back button function
+    /** It is a function needed to be implemented to have the back button in
+     * the upper left corner*/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         this.finish();
         return super.onOptionsItemSelected(item);
     }
-
+    /**Automatically generated function
+     * It runs tasks that are written in it whenever the current View (a.k.a. the current screen)
+     * is loaded*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +85,6 @@ public class SWE1D extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                //((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
                 ((TextView) parent.getChildAt(0)).setTextSize(19);
                 Log.v("item", (String) parent.getItemAtPosition(position));
             }
@@ -98,5 +102,10 @@ public class SWE1D extends AppCompatActivity {
         a.setDisplayHomeAsUpEnabled(true);
     }
 
+
+    /**
+     * A native method that is implemented by the 'tsunamiSim' native library,
+     * which is packaged with this application.
+     */
     public native String main(String scenarioName, int x, int time_step, String dirName);
 }
