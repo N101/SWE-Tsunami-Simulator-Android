@@ -23,19 +23,17 @@ import java.io.File;
 
 public class SWE extends AppCompatActivity {
 
-    private String outPut = "";
-
     static {
         System.loadLibrary("tsunamiSim");
     }
 
     public void start(View view) {
-        Spinner ss = (Spinner) findViewById(R.id.swe_scenario_spinner);
-        EditText a = (EditText) findViewById(R.id.swex);
-        EditText b = (EditText) findViewById(R.id.swey);
-        EditText c = (EditText) findViewById(R.id.checkpoints);
-        EditText d = (EditText) findViewById(R.id.cond);
-        EditText e = (EditText) findViewById(R.id.basename_input);
+        Spinner ss = findViewById(R.id.swe_scenario_spinner);
+        EditText a = findViewById(R.id.swex);
+        EditText b = findViewById(R.id.swey);
+        EditText c = findViewById(R.id.checkpoints);
+        EditText d = findViewById(R.id.cond);
+        EditText e = findViewById(R.id.basename_input);
         EditText time = findViewById(R.id.endTime);
         String dirName = ((EditText) findViewById(R.id.swe_dirname)).getText().toString();
 
@@ -46,7 +44,7 @@ public class SWE extends AppCompatActivity {
         int x, y, cp, t;
         String cond, baseName;
 
-        if (a.getText().toString().isEmpty() || b.getText().toString().isEmpty() || c.getText().toString().isEmpty() || d.getText().toString().isEmpty()) {
+        if (a.getText().toString().isEmpty() || b.getText().toString().isEmpty() || c.getText().toString().isEmpty() || d.getText().toString().isEmpty() || e.getText().toString().isEmpty() || time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please fill out all fields correctly!", Toast.LENGTH_SHORT).show();
         } else {
             x = Integer.parseInt(a.getText().toString());
@@ -56,7 +54,7 @@ public class SWE extends AppCompatActivity {
             baseName = e.getText().toString();
             t = Integer.parseInt(time.getText().toString());
 
-            outPut = main(scenarioName, x, y, cp, t,  cond, baseName, dirName);
+            String outPut = main(scenarioName, x, y, cp, t, cond, baseName, dirName);
 
             Intent intent = new Intent(view.getContext(), SWEOutput.class);
             intent.putExtra("swe", outPut);
@@ -80,18 +78,17 @@ public class SWE extends AppCompatActivity {
 
         Spinner scenarioSelector = findViewById(R.id.swe_scenario_spinner);
         String[] items = new String[]{"RadialDamBreakScenario", "ArtificialTsunamiScenario", "BathymetryDamBreakScenario"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
 
         scenarioSelector.setSelection(0);
         scenarioSelector.setAdapter(adapter);
         scenarioSelector.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextSize(19);
                 Log.v("item", (String) parent.getItemAtPosition(position));
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }

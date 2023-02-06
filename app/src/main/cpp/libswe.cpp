@@ -22,7 +22,8 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_cppdemo_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
-                                  jint checkpoints, jint end_time, jstring cond, jstring baseName, jstring dir) {
+                                  jint checkpoints, jint end_time, jstring cond, jstring baseName,
+                                  jstring dir) {
     std::string sname = jstring2string(env, scenarioName);
     std::string name = jstring2string(env, baseName);
     std::string dir_name = jstring2string(env, dir);
@@ -69,19 +70,18 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     auto wave_block = Blocks::Block::getBlockInstance(numberOfGridCellsX, numberOfGridCellsY,
                                                       cellSize_x, cellSize_y);
     wave_block->initialiseScenario(0, 0, scenario, false);
-    // Get the final simulation time from the scenario
-    //double endSimulationTime = scenario.getEndSimulationTime();
-    double endSimulationTime = end_time;
+
     auto *checkPoints = new double[numberOfCheckPoints + 1];
 
     // Compute the checkpoints in time
     for (int cp = 0; cp <= numberOfCheckPoints; cp++) {
-        checkPoints[cp] = cp * (endSimulationTime / numberOfCheckPoints);
+        checkPoints[cp] = cp * ((double) end_time / numberOfCheckPoints);
     }
 
     // Boundary size of the ghost layers
     Writers::BoundarySize boundarySize = {{1, 1, 1, 1}};
 
+    // path to write output files
     std::string absolute_path = "/sdcard/" + dir_name + "/";
     std::string fileName = Writers::generateBaseFileName(baseName, absolute_path, 0, 0);
 
@@ -100,10 +100,14 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             0
     );
 
+    auto start = std::chrono::system_clock::now();
+    std::time_t start_t = std::chrono::system_clock::to_time_t(start);
     // Write basic info
+    output << std::ctime(&start_t) << "\n";
     output << "Scenario: " << scenarioName << "\n";
     output << "Domain size: " << x << " x " << y << "\n";
-    output << "Time: "  << scenario.getEndSimulationTime() << "\n";
+    output << "checkpoints: " << numberOfCheckPoints << "\n";
+    output << "Time: " << scenario.getEndSimulationTime() << "\n";
     output << "===========================" << "\n";
 
     //    output << "boundaryCond = " << boundaryCond << "\n\n";
@@ -134,11 +138,8 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     // int cp = 1;
     // Loop over checkpoints
     for (int cp = 1; cp <= numberOfCheckPoints; cp++) {
-    //for (; simulationTime < endSimulationTime;) {
         // Do time steps until next checkpoint is reached
-    // while (simulationTime < endTime) {
-
-       while (simulationTime < checkPoints[cp]) {
+        while (simulationTime < checkPoints[cp]) {
             output << "Running simulation at time " << simulationTime << std::endl;
             // Set values in ghost cells
             wave_block->setGhostLayer();
@@ -156,7 +157,7 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
             iterations++;
         }
 
-        //output << "new checkpoint after " << iterations << " iterations\n";
+        output << "NEW CHECKPOINT AFTER " << iterations << " ITERATIONS\n";
         // Write output
         writer->writeTimeStep(
                 wave_block->getWaterHeight(), wave_block->getDischargeHu(),
@@ -183,7 +184,7 @@ Scenarios::Scenario *getScenarioBasedOnName(const std::string &name) {
     if (name == "RadialDamBreakScenario") {
         auto *scenario = new Scenarios::RadialDamBreakScenario;
         return scenario;
-    } else if (name  == "BathymetryDamBreakScenario") {
+    } else if (name == "BathymetryDamBreakScenario") {
         auto *scenario = new Scenarios::BathymetryDamBreakScenario;
         return scenario;
     } else {
