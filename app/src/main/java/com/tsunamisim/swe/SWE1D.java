@@ -28,9 +28,9 @@ public class SWE1D extends AppCompatActivity {
     }
 
     public void start(View view) {
-        Spinner ss = (Spinner) findViewById(R.id.swe1d_scenario_spinner);
-        EditText a = (EditText) findViewById(R.id.swe1size);
-        EditText b = (EditText) findViewById(R.id.swe1dtime);
+        Spinner ss = findViewById(R.id.swe1d_scenario_spinner);
+        EditText a = findViewById(R.id.swe1size);
+        EditText b = findViewById(R.id.swe1dtime);
         String dirName = ((EditText) findViewById(R.id.swe1d_dirname)).getText().toString();
         int size, time;
         String scenarioName = ss.getSelectedItem().toString();
@@ -45,16 +45,11 @@ public class SWE1D extends AppCompatActivity {
             String outPut = main(scenarioName, size, time, dirName);
 
             Intent intent = new Intent(view.getContext(), SWE1DOutput.class);
-            //clear previous text output
-
             intent.putExtra("swe1dOutput", outPut);
             startActivity(intent);
         }
 
     }
-    //todo rename cppdemo
-
-
     /// Back button function
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

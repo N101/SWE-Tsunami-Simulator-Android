@@ -16,9 +16,12 @@ runner_main(std::string &scenarioName, int domain_x, int domain_y, int checkpoin
             const std::string &cond, std::string &baseName, const std::string &dir_name);
 
 Scenarios::Scenario *getScenarioBasedOnName(const std::string &name);
-
 std::string jstring2string(JNIEnv *env, jstring jStr);
 
+/**
+ * The jni interface function between c++ and java.
+ * It gets called by java code.
+ * */
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName, jint x, jint y,
@@ -41,13 +44,13 @@ Java_com_tsunamisim_swe_SWE_main(JNIEnv *env, jobject thiz, jstring scenarioName
                     dir_name).c_str());
 }
 
+
+
 /**
  * @note:
- * an early experimental version, only switched scenario to TsunamiScenario
- * compiled and run (?) withouit error, but many bugs expected
+ * The functions that runs the simulation.
+ * The name indicates that it used to be the main function in the original SWE C++ code.
  * */
-
-
 std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints, int end_time,
                         const std::string &boundaryCond, std::string &baseName,
                         const std::string &dir_name) {
@@ -177,9 +180,13 @@ std::string runner_main(std::string &scenarioName, int x, int y, int checkpoints
     return output.str();
 }
 
-// To avoid object slicing, Scenario is changed to be marked as pure virtual class through making functions "=0",
-// so that correct getWaterHeight etc can be called.
-// Note: new functions are implemented in classes such as ArtificialTsunamiScenario (as a derived class of Scenario)
+/**
+ * A function that chooses different Scenario based on the name passed in
+ * @param name the name of Scenario to choose
+ * To avoid object slicing, Scenario is changed to be marked as pure virtual class through making functions "=0",
+ * so that correct getWaterHeight etc can be called.
+ * Note: new functions are implemented in classes such as ArtificialTsunamiScenario (as a derived class of Scenario)
+ */
 Scenarios::Scenario *getScenarioBasedOnName(const std::string &name) {
     if (name == "RadialDamBreakScenario") {
         auto *scenario = new Scenarios::RadialDamBreakScenario;
@@ -194,7 +201,12 @@ Scenarios::Scenario *getScenarioBasedOnName(const std::string &name) {
 }
 
 
-// Source: https://stackoverflow.com/questions/41820039/jstringjni-to-stdstringc-with-utf8-characters @Slerte
+/**
+ * A function that converts jstring into std::string
+ * @param jStr jstring that is going to be converted
+ * @return std::string
+ * Source: https://stackoverflow.com/questions/41820039/jstringjni-to-stdstringc-with-utf8-characters @Slerte
+ */
 std::string jstring2string(JNIEnv *env, jstring jStr) {
     if (!jStr)
         return "";

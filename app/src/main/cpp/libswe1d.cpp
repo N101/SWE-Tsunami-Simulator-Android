@@ -1,5 +1,3 @@
-
-
 #include <string>
 #include <cfenv>
 
@@ -25,6 +23,10 @@ std::string jstring2string(JNIEnv *env, jstring jStr);
 Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domain_size);
 
 
+/**
+ * The jni interface function between c++ and java.
+ * It gets called by java code.
+ * */
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_tsunamisim_swe_SWE1D_main(JNIEnv *env, jobject thiz, jstring scenario, jint size,
@@ -36,12 +38,17 @@ Java_com_tsunamisim_swe_SWE1D_main(JNIEnv *env, jobject thiz, jstring scenario, 
 
 double createRandomNumber_MAIN(double min, double max);
 
+
+/**
+ * @note:
+ * The functions that runs the simulation.
+ * The name indicates that it used to be the main function in the original SWE1D C++ code.
+ * */
 std::string runner_main(const std::string &scenario_name, int size, int time_step,
                         const std::string &dir_name) {
 
     // Triggers signals on floating point errors, i.e. prohibits quiet NaNs and alike.
     // feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW); causes SWE1D to stop
-
 
     std::stringstream output;
     //unsigned int domain_size = 24;// for sub/supercritical
@@ -57,7 +64,6 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     auto *hu = new RealType[domain_size + 2];
     // Bathymetry
     auto *b = new RealType[domain_size + 2];
-
 
     auto start = std::chrono::system_clock::now();
     std::time_t start_t = std::chrono::system_clock::to_time_t(start);
@@ -124,6 +130,7 @@ std::string runner_main(const std::string &scenario_name, int size, int time_ste
     // Free allocated memory
     delete[] h;
     delete[] hu;
+    delete &scenario;
     std::ofstream output_text(absolute_path + "output.txt");
     output_text << output.str();
     return output.str();
@@ -134,6 +141,13 @@ double createRandomNumber_MAIN(const double min, const double max) {
     return min + (max - min) * randomNumber;
 }
 
+
+/**
+ * A function that chooses different Scenario based on the name passed in
+ * @param name the name of Scenario to choose
+ * Scenarios::Scenario was renamed to Scenario1D as a super class of other SWE1D Scenarios
+ * to achieve variable return type
+ */
 Scenarios::Scenario1D *getScenarioBasedOnName(const std::string &name, int domain_size) {
     if (name == "DamBreakScenario") {
         auto *scenario = new Scenarios::DamBreakScenario(domain_size);

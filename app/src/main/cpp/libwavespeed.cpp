@@ -55,11 +55,15 @@ void inverseAndJumpMultiplication(double inverse[2][2], double jump[2][1], doubl
     alfas[1][0] = inverse[1][0] * jump[0][0] + inverse[1][1] * jump[1][0];
 }
 
+/**
+ * The jni interface function between c++ and java.
+ * Unlike in libswe and libswe1d, this function runs the simulation directly.
+ * It gets called by java code.
+ * */
 extern "C"
 JNIEXPORT jstring
-
-JNICALL Java_com_tsunamisim_swe_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a, jint b, jint c,
-                                                jint d) {
+JNICALL Java_com_tsunamisim_swe_WaveSpeed_main(JNIEnv *env, jobject thiz, jint a, jint b, jint c,
+                                               jint d) {
     double ql[2]{0, 0}, qr[2]{0, 0};
     double ul{0}, ur{0}, hRoe{0}, hl{0}, hr{0}, uRoe{0};
     double e1{0}, e2{0}; //eigenvalue 1 is e1, eigenvalue 2 is e2
@@ -127,22 +131,16 @@ JNICALL Java_com_tsunamisim_swe_WaveSpeed_main(JNIEnv*env, jobject thiz, jint a,
     stringstream msg;
     if (e1 * e2 > 0) { // the eigenvalues have the same sign have the same sign
         if (e1 < 0) {
-//cout << "This is the wave speed of left going wave: " << e1 << endl;
-//cout << "This is the wave speed of right going wave: 0"  << endl;
             msg << "This is the wave speed of left going wave: " << e1 << "\n"
                 << "This is the wave speed of right going wave: 0";
 
         }
         if (e1 > 0) {
-//cout << "This is the wave speed of left going wave: 0" << endl;
-//cout << "This is the wave speed of right going wave: " << e2 << endl;
             msg << "This is the wave speed of left going wave: 0" << "\n"
                 << "This is the wave speed of right going wave: " << e2;
 
         }
     } else {
-//cout << "This is the wave speed of left going wave: " << e1 << endl;
-//cout << "This is the wave speed of right going wave: " << e2 << endl;
         msg << "This is the wave speed of left going wave: " << e1 << "\n"
             << "This is the wave speed of right going wave: " << e2;
 

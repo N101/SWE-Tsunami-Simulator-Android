@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-import com.tsunamisim.swe.R;
 
 import java.io.File;
 
@@ -30,6 +29,7 @@ public class SWE extends AppCompatActivity {
     }
 
     public void start(View view) {
+
         Spinner ss = findViewById(R.id.swe_scenario_spinner);
         EditText a = findViewById(R.id.swex);
         EditText b = findViewById(R.id.swey);
@@ -40,7 +40,7 @@ public class SWE extends AppCompatActivity {
         String dirName = ((EditText) findViewById(R.id.swe_dirname)).getText().toString();
 
         File swe_dir = new File(Environment.getExternalStorageDirectory() + "/" + dirName);
-        swe_dir.mkdirs();
+        boolean dirCreated = swe_dir.mkdirs();
 
         String scenarioName = ss.getSelectedItem().toString();
         int x, y, cp, t;
@@ -57,7 +57,9 @@ public class SWE extends AppCompatActivity {
             t = Integer.parseInt(time.getText().toString());
 
             String outPut = main(scenarioName, x, y, cp, t, cond, baseName, dirName);
-
+            if(!dirCreated){
+                outPut += "\nDirectory is not created! Please check to permission to the app!";
+            }
             Intent intent = new Intent(view.getContext(), SWEOutput.class);
             intent.putExtra("swe", outPut);
             startActivity(intent);
